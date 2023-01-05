@@ -1,0 +1,660 @@
+<html>
+<!-- loads path to static file-->
+{% load static %}
+
+<head>
+<style>
+   
+
+.nav li{
+  -webkit-border-radius: 30px 30px 30px 30px ;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,255);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+  font-color: #1b1c1d;
+}
+.nav li:hover {
+    background-color: #9632e3;
+}
+span{
+    color:#1b1c1d;
+}
+.hrl{
+    border-top: 2px solid red;
+    height: 1px;
+}
+</style>
+{% block headcontent %}
+<title></title>
+{% endblock %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="{% static 'smt_smpo_dashboard/ico/favicon1.ico' %}" type="image/x-icon">
+</head>
+<body style="font-size: medium; background-color:white; ">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" style="border-radius: 0px; background-color:#FD5825;border-color:#FD5825; font-size: medium; font-weight: bold; " >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse-navbar-collapse">
+
+                {% if role == 'sme'%}
+                <a class="navbar-brand" style="font-size: large; color: white;" href="{%url 'sme'%}">SMOpsDashboard</a>
+                <ul class="nav navbar-nav">
+                    
+                    
+                <li><a href="{%url 'adhoc_form'%}">
+                    <span class="glyphicon glyphicon-paste">AdhocRequestForm</span></a>
+                </li>
+                
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Metrics</span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{%url 'leave_planner'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               planner
+                                </a>
+                            </li>
+                            <li><a href="{%url 'aud_cost'%}">
+                                <i class="fa fa-key" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                    Audit cost</a>
+                </li>
+                    </ul>
+                </li>
+                
+                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Status-update</span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{%url 'bs_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               BS
+                            </a>
+                            </li>
+                            <li><a href="{%url 'bsv_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BSV</a>
+                </li>
+                <li>
+                            <a href="{%url 'ptc_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               PTC
+                            </a>
+                            </li>
+                            <li><a href="{%url 'ptv_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    PTV</a>
+                </li>
+                <!--<li>
+                            <a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill-DQ
+                            </a>
+                            </li>-->
+                            <li><a href="{%url 'bem_publish_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BEM & Publish-DQ</a>
+                </li>
+                <li>
+                            <a href="{%url 'backfill_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill
+                            </a>
+                            </li>
+                            <!--<li><a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BEM & Publish-Manual</a>
+                </li>-->
+                    </ul>
+                </li>
+                
+                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Brand Metrics</span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{%url 'bs_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               BS
+                            </a>
+                            </li>
+                            <li><a href="{%url 'bsv_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BSV</a>
+                </li>
+                <li>
+                            <a href="{%url 'ptc_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               PTC
+                            </a>
+                            </li>
+                            <li><a href="{%url 'ptv_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    PTV</a>
+                </li>
+               <!-- <li>
+                            <a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill-DQ
+                            </a>
+                            </li> -->
+                            <li><a href="{%url 'bem_publish_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BEM & Publish-DQ</a>
+                </li>
+                <li>
+                            <a href="{%url 'backfill_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill
+                            </a>
+                            </li>
+                            <!--<li><a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BEM & Publish-Manual</a>
+                </li>-->
+                    </ul>
+                </li>
+                
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Database</span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{%url 'view_db'%}" target="_blank">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               View OPS db
+                            </a>
+                            </li>
+                    <li>
+                            <a href="{%url 'view_db2'%}" target="_blank">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               View Brand db
+                            </a>
+                            </li>
+                    </ul>
+                </li>
+                <!--<li><a href="{%url 'eod_summary'%}">
+                    <span class="glyphicon glyphicon-paste">EOD Summary</span></a>
+                </li> -->
+                <!--<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Allocation</span></a>
+                    <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'bs_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BS
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'ptc_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                PTC
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'backfill_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BACKFILL
+                            </a>
+                            </li>
+                        </ul>
+                </li>-->
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Self-Allocation</span></a>
+                    <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'bsv_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BSV
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'ptv_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                PTV
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'bem_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BEM
+                            </a>
+                            </li>
+                        </ul>
+                </li>
+               <li><a href="{%url 'stakeholder'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Stakeholders</span></a>
+                </li>
+                {% if sp_role2 == 'master' %}
+                <li><a href="{%url 'core'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Core-Team</span></a>
+                </li>
+                 <li><a href="{%url 'master'%}">
+                    <span class="glyphicon glyphicon-paste">Master-Update</span></a>
+                </li> 
+                {% endif %}
+                
+                
+                </ul>
+
+                    {% if role == 'reviewer' %}
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-paste">CRReview</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                CR Status
+                            </a>
+                            </li>
+                            
+                            <li>
+                            <a href="#">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                CR ScoreCard
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#" target="_blank">
+                        <span class="glyphicon glyphicon-paste">Throttle</span></a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+                {% if role == 'auditor' %}
+                <a class="navbar-brand" style="font-size: large; color: white;" href="{%url 'auditor'%}">SMOpsDashboard</a>
+                <ul class="nav navbar-nav">
+                    
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-paste">Status-update</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'bs_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               BS
+                            </a>
+                            </li>
+                            <li><a href="{%url 'bsv_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BSV</a>
+                </li>
+                <li>
+                            <a href="{%url 'ptc_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               PTC
+                            </a>
+                            </li>
+                            <li><a href="{%url 'ptv_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    PTV</a>
+                </li>
+                <!--<li>
+                            <a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill-DQ
+                            </a>
+                            </li>-->
+                            <li><a href="{%url 'bem_publish_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BEM & Publish-DQ</a>
+                </li>
+                <li>
+                            <a href="{%url 'backfill_stat'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill
+                            </a>
+                            </li>
+                                <!--<li><a href="#">
+                                    <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                        BEM & Publish-Manual</a>
+                    </li>-->
+                        </ul>
+                    </li>
+
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-paste">Metric-update</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'bs_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               BS
+                            </a>
+                            </li>
+                            <li><a href="{%url 'bsv_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BSV</a>
+                </li>
+                <li>
+                            <a href="{%url 'ptc_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               PTC
+                            </a>
+                            </li>
+                            <li><a href="{%url 'ptv_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    PTV</a>
+                </li>
+               <!-- <li>
+                            <a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill-DQ
+                            </a>
+                            </li> -->
+                            <li><a href="{%url 'bem_publish_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    BEM & Publish-DQ</a>
+                </li>
+                <li>
+                            <a href="{%url 'backfill_met'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Backfill
+                            </a>
+                            </li>
+                                <!--<li><a href="#">
+                                    <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                        BEM & Publish-Manual</a>
+                    </li>-->
+                        </ul>
+                    </li>
+
+                <li><a href="{%url 'adhoc_form'%}">
+                    <span class="glyphicon glyphicon-paste">AdhocRequestForm</span></a>
+                </li>
+                
+                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Metrics</span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{%url 'leave_planner'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Planner
+                            </a>
+                            </li>
+                            <li><a href="{%url 'aud_cost'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                    Audit cost</a>
+                </li>
+            </li>
+            <li><a href="{%url 'aud_cost'%}">
+                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+    Error-log</a>
+</li>
+                    </ul>
+                </li>
+                
+                 
+                
+                 
+                
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Database</span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{%url 'view_db'%}" target="_blank">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               OPS db
+                            </a>
+                            </li>
+                    <li>
+                            <a href="{%url 'view_db2'%}" target="_blank">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Brand db
+                            </a>
+                            </li>
+                    </ul>
+                </li>
+                <!--<li><a href="{%url 'eod_summary'%}">
+                    <span class="glyphicon glyphicon-paste">EOD Summary</span></a>
+                </li> -->
+                <!--<li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Allocation</span></a>
+                    <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'bs_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BS
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'ptc_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                PTC
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'backfill_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BACKFILL
+                            </a>
+                            </li>
+                        </ul>
+                </li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-paste">Self-Allocation</span></a>
+                    <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'bsv_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BSV
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'ptv_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                PTV
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'bem_alloc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                BEM
+                            </a>
+                            </li>
+                        </ul>
+                </li>-->
+                  {% if sp_role1 == 'lead' %}
+                <li><a href="{%url 'core'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Core-Team</span></a>
+                </li>
+                {% endif %}
+                 {% if sp_role2 == 'master' %}
+                 <li><a href="{%url 'master'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Master-Update</span></a>
+                </li> 
+                {% endif %}
+                <li><a href="{%url 'stakeholder'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Stakeholders</span></a>
+                </li>
+                </ul>
+                {% endif %}
+                {% if role == 'manager' %}
+                <a class="navbar-brand" style="font-size: large; color: white;" href="{%url 'manager'%}">SMOpsDashboard</a>
+                <ul class="nav navbar-nav">                 
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-star" style="color: #1b1c1d;">Adhoc</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'approve_adhoc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                Adhoc Approval Sheet
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'hist_adhoc'%}">
+                            <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                Adhoc History
+                            </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-plus">Manage</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{%url 'user_role'%}">
+                                    <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                    Add User Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%url 'benchmark'%}">
+                                    <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                    Update benchmark
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-plus">Metrics</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                           <li>
+                                <a href="{%url 'attendence'%}">
+                                    <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                    Attendance
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%url 'usr_pro'%}">
+                                    <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                    Date-Wise Productivity
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%url 'daily_cost'%}">
+                                    <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                    Team Daily Cost
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{%url 'monthly_cost'%}">
+                                    <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                    Team Monthly Cost
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-plus">Back-end-table</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                           
+                           <li>
+                            <a href="{%url 'view_db'%}" target="_blank">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               OPS db
+                            </a>
+                            </li>
+                    <li>
+                            <a href="{%url 'view_db2'%}" target="_blank">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Brand db
+                            </a>
+                            </li>
+                            <li class="hrl"></li>
+                            <li><a href="{%url 'log_atten'%}" target="_blank">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                Modify Attendance Log
+                                </a>
+                            </li>
+                            <li><a href="{%url 'productivity_edit'%}">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                     Amend Productivity
+                                </a>
+                            </li>
+                            <li><a href="{%url 'brand_ops_edit'%}">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                    Modify OPS
+                                </a>
+                            </li>
+                            <li><a href="{%url 'brand_prog_edit'%}">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                    Modify Program
+                                </a>
+                            </li>
+                            <li><a href="{%url 'benchmark_edit'%}">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                    Modify Benchmark
+                                </a>
+                            </li>
+                            <li><a href="{%url 'prod_edit'%}">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                    Modify Productivity
+                                </a>
+                            </li>
+                            <li><a href="{%url 'producitvity_table'%}" target="_blank">
+                            <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                Productivity Table
+                            </a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-plus">Planner</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a href="{%url 'leave_planner'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               Planner
+                            </a>
+                            </li>
+                            <li>
+                            <a href="{%url 'view_planner'%}">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                               View Planner
+                            </a>
+                            </li>
+                            </ul>
+                    </li>
+                    </li>
+                      <li><a href="{%url 'core'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Core-Team</span></a>
+                </li>   
+                {% if sp_role2 == 'master' %}
+                <li><a href="{%url 'master'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Master-Update</span></a>
+                </li> 
+                {% endif %}     
+                    <li><a href="{%url 'stakeholder'%}" target="_blank">
+                    <span class="glyphicon glyphicon-paste">Stakeholders</span></a>
+                </li>
+                </ul>
+                {% endif %}
+
+                
+                
+                
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li style="float:right"><span><img src="https://badgephotos.amazon.com/?uid={{user}}" style="width:45px;height:50px;" /></span></li>
+                    <li><a href="{%url 'logout'%}">
+                        <span class="glyphicon glyphicon-log-out">LogOut</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content%}
+    {% endblock %}
+</body>
+</html>

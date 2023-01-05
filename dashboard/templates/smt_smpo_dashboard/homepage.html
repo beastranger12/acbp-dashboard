@@ -1,0 +1,75 @@
+{% extends "smt_smpo_dashboard/base.html" %}
+{% load staticfiles %}
+
+{% block title %}SMT-SMPO-Dashboard - Home Page{% endblock title %}
+
+{% block main_body %}
+<div class="jumbotron">
+    <div class="container">
+        <img src="{% static "smt_smpo_dashboard/img/400px-Under_construction_svg.svg.png" %}" class="img-responsive" alt="Brand image">
+        <h1>SMT-SMPO-Dashboard</h1>
+        <p>
+            This is a <a href="https://www.djangoproject.com/">Django</a> and
+            <a href="https://getbootstrap.com/">Bootstrap</a> powered site.
+            It is still under construction but soon will do awesome things.
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>About</h2>
+            <p>
+                SMT-SMPO-Dashboard is a <a href="https://www.djangoproject.com/">Django</a> and
+                <a href="https://getbootstrap.com/">Bootstrap</a> powered web site created using the
+                <a href="https://w.amazon.com/index.php/Django/Octane">Django Octane template</a>.
+                Right now it is still under construction but soon it will do some
+                awesome things.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Server Side Engine</h2>
+            <p>
+                <a href="https://www.djangoproject.com/">Django</a> is used as the server side engine
+                for powering this website. As is explained on the homepage for Django,
+                Django is a high-level Python Web framework that encourages rapid development
+                and clean, pragmatic design. Visit the Django site to learn more Django.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Client Side</h2>
+            <p>
+                Many components are used to implement the client-side functionality.
+                <a href="https://getbootstrap.com/">Bootstrap</a> is the main CSS/JS library used
+                for rendering pages of the site. The packages shipping Bootstrap and its dependencies
+                are from <a href="https://w.amazon.com/index.php/NodeJS/ThirdPartyLibraries">NPM</a>
+                packages. Visit the mentioned links to learn more.
+            </p>
+        </div>
+    </div>
+</div> <!-- /container -->
+{% endblock main_body %}
+
+{% block extra_js_code %}
+<script>
+$(function() {
+    set_active_nav_button_by_text('Home');
+});
+</script>
+{% endblock extra_js_code %}
+
+{% block extra_test_cases %}
+{% if show_unit_test %}
+<script>
+QUnit.module("Home Page Test Cases");
+QUnit.test("sanity test", function(assert) {
+    assert.ok(true, "this test is fine");
+});
+QUnit.test("home link active", function(assert) {
+    assert.equal($('#global-navbar-left > li.active > a').text(), 'Home', 'Home link is active link');
+});
+</script>
+{% endif %}
+{% endblock extra_test_cases %}

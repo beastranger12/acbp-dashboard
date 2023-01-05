@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.appelsiini.net/projects/chained/jquery.chained.js?v=0.9.10"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Filters</h2></center>
+    {% include 'smt_smpo_dashboard/filter2.html' %}
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Website Database</h2></center>
+    <div style="float:right">
+        <form id="login-form" class="form" action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #FD5825; color:white">EXPORT TO EXCEL</button>
+        </form>
+    </div>
+                <table class="table">
+                    <thead class="thead-dark" style="background-color: #3FABAF;">
+                        <tr>
+                            
+                                                 <th scope="col">bid</th>
+<th scope="col">brand</th>
+<th scope="col">website</th>
+<th scope="col">first_level_ssp_status</th>
+<th scope="col">program_usecase</th>
+<th scope="col">scrape_ssp_status</th>
+<th scope="col">uec_reflection_status</th>
+<th scope="col">mkpl</th>
+<th scope="col">is_backfill</th>
+<th scope="col">ssl_auto_kvp_status</th>
+<th scope="col">identity_dp_backfill_status</th>
+<th scope="col">is_brand_with_identity_dp</th>
+<th scope="col">matching_status</th>
+<th scope="col">matching_model</th>
+<th scope="col">is_incremental_matching</th>
+<th scope="col">ec_gv_matching_cvg_gt_20</th>
+<th scope="col">ptc_status</th>
+<th scope="col">non_criteria_status</th>
+<th scope="col">priority</th>
+<th scope="col">overall_website_status</th>
+<th scope="col">ds_queue</th>
+<th scope="col">backfill_status</th>
+<th scope="col">detailed_backfill_status</th>
+<th scope="col">nm_status</th>
+<th scope="col">is_bem</th>
+<th scope="col">is_bem_converted</th>
+<th scope="col">is_bem_attempted</th>
+<th scope="col">brand_status</th>
+<th scope="col">business_usecase</th>
+<th scope="col">backfill_business_usecase</th>
+<th scope="col">tt_comments</th>
+<th scope="col">backfill_type</th>
+<th scope="col">language</th>
+<th scope="col">business_request</th>
+<th scope="col">brand_iteration</th>
+<th scope="col">matching_start_date</th>
+<th scope="col">date</th>
+<th scope="col">mp_id</th>
+<th scope="col">keys_available_website_count</th>
+<th scope="col">keys_count</th>
+<th scope="col">keys_count_gt_20</th>
+<th scope="col">slots_backfilled_count</th>
+<th scope="col">idf_av_performance</th>
+<th scope="col">idf_av_ssl_performance</th>
+<th scope="col">scrape_metric</th>
+<th scope="col">matching_gv_coverage</th>
+<th scope="col">matching_sku_coverage</th>
+<th scope="col">incremental_matching_gv_coverage</th>
+<th scope="col">incremental_sku_coverage</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in object %}
+                        <tr>
+                        <td>{{obj.bid }}</td>
+<td>{{obj.brand }}</td>
+<td>{{obj.website }}</td>
+<td>{{obj.first_level_ssp_status }}</td>
+<td>{{obj.program_usecase }}</td>
+<td>{{obj.scrape_ssp_status }}</td>
+<td>{{obj.uec_reflection_status }}</td>
+<td>{{obj.mkpl }}</td>
+<td>{{obj.is_backfill }}</td>
+<td>{{obj.ssl_auto_kvp_status }}</td>
+<td>{{obj.identity_dp_backfill_status }}</td>
+<td>{{obj.is_brand_with_identity_dp }}</td>
+<td>{{obj.matching_status }}</td>
+<td>{{obj.matching_model }}</td>
+<td>{{obj.is_incremental_matching }}</td>
+<td>{{obj.ec_gv_matching_cvg_gt_20 }}</td>
+<td>{{obj.ptc_status }}</td>
+<td>{{obj.non_criteria_status }}</td>
+<td>{{obj.priority }}</td>
+<td>{{obj.overall_website_status }}</td>
+<td>{{obj.ds_queue }}</td>
+<td>{{obj.backfill_status }}</td>
+<td>{{obj.detailed_backfill_status }}</td>
+<td>{{obj.nm_status }}</td>
+<td>{{obj.is_bem }}</td>
+<td>{{obj.is_bem_converted }}</td>
+<td>{{obj.is_bem_attempted }}</td>
+<td>{{obj.brand_status }}</td>
+<td>{{obj.business_usecase }}</td>
+<td>{{obj.backfill_business_usecase }}</td>
+<td>{{obj.tt_comments }}</td>
+<td>{{obj.backfill_type }}</td>
+<td>{{obj.language }}</td>
+<td>{{obj.business_request }}</td>
+<td>{{obj.brand_iteration }}</td>
+<td>{{obj.matching_start_date }}</td>
+<td>{{obj.date }}</td>
+<td>{{obj.mp_id }}</td>
+<td>{{obj.keys_available_website_count }}</td>
+<td>{{obj.keys_count }}</td>
+<td>{{obj.keys_count_gt_20 }}</td>
+<td>{{obj.slots_backfilled_count }}</td>
+<td>{{obj.idf_av_performance }}</td>
+<td>{{obj.idf_av_ssl_performance }}</td>
+<td>{{obj.scrape_metric }}</td>
+<td>{{obj.matching_gv_coverage }}</td>
+<td>{{obj.matching_sku_coverage }}</td>
+<td>{{obj.incremental_matching_gv_coverage }}</td>
+<td>{{obj.incremental_sku_coverage }}</td>
+
+</tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+</div>   
+</body>
+</html>
+
+

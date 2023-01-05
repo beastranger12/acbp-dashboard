@@ -1,0 +1,107 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block content%}
+    <div class="jumbotron" style="background: transparent">
+    <center><h2><b>Retailer Status</b></h2>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Market Place</th>
+                  <th scope="col">Product Type</th>
+                  <th scope="col">RDA</th>
+                  <th scope="col">Drive Path</th>
+                  <th scope="col">Selection Size</th>
+                  <th scope="col">Audit Selection Size</th>
+                  <th scope="col">Current Status</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">SubTask</th>
+                  <th scope="col">Comments</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in rob %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.rda}}</td>
+                    <td><a href="{{uob.drive_path}}" target="_blank">path</a></td>
+                    <td>{{uob.scrape_selection_size}}</td>
+                    <td><input type="number" name="selection" required></td>
+                    <td>{{uob.status}}</td>
+                    <td><select name="task" class="form-control" id="comboA{{forloop.counter}}" required>
+                        <option value="" selected disabled>Please select</option>
+                        <option value="Audit">Audit</option>
+                        <option value="Scrape">Scrape</option>
+                        </select>
+                     </td>
+                    <td>
+                        <select name="Subtask" class="form-control" id="comboB{{forloop.counter}}" required>
+                            
+                        </select>
+                    </td>
+                <script>
+                    document.getElementById("comboA{{forloop.counter}}").onchange = function(e){
+                       console.log(e.target.value)
+                       comboAValue = e.target.value
+                        if(comboAValue == "Audit")
+                           document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Audit WIP">Audit WIP</option><option value="Audit On-Hold">Audit On-Hold</option><option value="Pre-Audit Revert">Pre-Audit Revert</option>'
+                        if(comboAValue == "Scrape")
+                           document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Reconfig-RDA">Reconfig-RDA</option><option value="Approved">Approved</option>'
+                    };
+                   </script>
+                   <td><input type="text" name="comment"></td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form> 
+                {% endfor %}
+            </tbody>
+        </table>
+        <center><h2><b>Retailer Details</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Market Place</th>
+                  <th scope="col">Product Type</th>
+                  <th scope="col">RDA</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Iterations</th>
+                  <th scope="col">Selection Size</th>
+                  <th scope="col">Partial Comments</th>
+                  <th scope="col">Drive Path</th>
+                  <th scope="col">RDA Comments</th>
+                  <th scope="col">Audit Comments</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in details_obj %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.rda}}</td>
+                    <td>{{uob.status}}</td>
+                    <td>{{uob.iterations}}</td>
+                    <td>{{uob.scrape_selection_size}}</td>
+                    <td>{{uob.partial_data}}</td>
+                    <td><a href="{{uob.drive_path}}" target="_blank">path</a></td>
+                    <td>{{uob.scrape_comment}}</td>
+                    <td>{{uob.audit_comment}}</td>
+                </tr>
+                </form> 
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

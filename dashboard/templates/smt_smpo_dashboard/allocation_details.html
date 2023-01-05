@@ -1,0 +1,52 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Details</title>
+{% endblock %}
+{% block content %}
+    <form method="GET" action="/audit_allocation">
+    <div class="form-group col-md-1">
+        <label for="category">Status</label>
+        <select id="category" class="form-control" name="req_stat">
+          <option selected disabled>Choose...</option>
+          {% for cat in stat %}
+          <option value="{{ cat }}">{{ cat }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" style="background-color: #3FABAF;">Search</button>
+    </form>
+        <div class="jumbotron">
+        <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Auditor Details</b></h2></center>
+            <table class="table" style="font-size:small;">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">Website Type</th>
+                      <th scope="col">Auditor</th>
+                      <th scope="col">RDA</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Selection Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for uob in obj%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{uob.domain}}</td>
+                        <td>{{uob.marketplace}}</td>
+                        <td>{{uob.product_type}}</td>
+                        <td>{{uob.website_type}}</td>
+                        <td>{{uob.auditor}}</td>
+                        <td>{{uob.rda}}</td>
+                        <td>{{uob.status}}</td>
+                        <td>{{uob.scrape_selection_size}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+{% endblock %}

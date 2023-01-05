@@ -1,0 +1,33 @@
+{% extends "smt_smpo_dashboard/base.html" %}
+{% load staticfiles %}
+
+{% block title %}SMT-SMPO-Dashboard - QUnit Test Suite{% endblock title %}
+
+{% block main_body %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">QUnit Test Suite</h3>
+    </div>
+    <div class="panel-body">
+        <h1>See the QUnit panel in the Django debug toolbar.</h1>
+    </div>
+</div>
+{% endblock main_body %}
+
+{% block qunit_report %}
+{% if show_unit_test %}
+<!--
+QUnit report already setup.
+-->
+{% endif %}
+{% endblock qunit_report %}
+{% block extra_test_cases %}
+{% if show_unit_test %}
+<!--
+Run tests from main test script.
+NOTE: This is loaded from here because the website specific JS libraries need
+to be loaded first.
+-->
+<script src="{% static "smt_smpo_dashboard/site-tests.js" %}"></script>
+{% endif %}
+{% endblock extra_test_cases %}

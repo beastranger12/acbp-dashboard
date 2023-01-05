@@ -1,0 +1,38 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Allocate</title>
+{% endblock %}
+{% block content %}
+        <div class="jumbotron" style="background: transparent">
+            <center><h2 style="font-weight: bolder; color: #FD5825;">Open CR Report</h2></center>
+            <table class="table"  style="font-size:small;">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">RDA</th>
+                      <th scope="col">Reviewer</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">CR Raised Date</th>
+                      <th scope="col">Ageing</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for uob in report%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        {% for ob in uob%}
+                            <td>{{ob}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% endblock %}  
+    
+    

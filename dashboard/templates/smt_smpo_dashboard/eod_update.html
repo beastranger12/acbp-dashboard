@@ -1,0 +1,132 @@
+{% extends 'smt_smpo_dashboard/stakeholder_navbar.html' %} 
+{% block content%}
+<div class="jumbotron">
+	<p style="font-size:17px;color: #FD5825;  text-decoration: underline; font-weight: 800; text-align: center;">Overall report</p>
+	<div class="form-row">
+
+            <div class="form-group col-md-3">
+            	<form id="login-form" class="form" action="" method="POST">
+                    {% csrf_token %}
+                
+                <select id="category" class="form-control" name="phase">
+                  <option selected>Phase</option>
+                  {% for i in PHASE %}
+                  
+                  <option value="{{ i.v }}">{{ i.d }}</option>
+                  {% endfor %}
+                  
+                </select></div>
+                <div class="form-group col-md-3">
+                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #3FABAF;">
+            </div>
+                </form>
+        </div>
+	<table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+    <th scope="col">Status</th>
+ 	
+ 	{% for ml in print_date_range%}
+ 	
+    <th>{{ml}}</th>
+
+    {% endfor %}
+ </tr>
+</thead>
+<tbody>
+	<tr>
+	{%for ml in tot1%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot2%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot3%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot4%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+</tbody>
+</table>
+	<p style="font-size:17px; color: #FD5825; text-decoration: underline; font-weight: 800; text-align: center;">EN report</p>
+    <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+    <th scope="col">Status</th>
+ 	
+ 	{% for ml in print_date_range%}
+ 	
+    <th>{{ml}}</th>
+
+    {% endfor %}
+ </tr>
+</thead>
+<tbody>
+	<tr>
+	{%for ml in tot5%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot6%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot7%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot8%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+</tbody>
+</table>
+<p style="font-size:17px;color: #FD5825;  text-decoration: underline; font-weight: 800; text-align: center;">Non-en report</p>
+<table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+    <th scope="col">Status</th>
+ 	
+ 	{% for ml in print_date_range%}
+ 	
+    <th>{{ml}}</th>
+
+    {% endfor %}
+ </tr>
+</thead>
+<tbody>
+	<tr>
+	{%for ml in tot9%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot10%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot11%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+<tr>
+	{%for ml in tot12%}
+		<td>{{ml}}</td>
+	{%endfor%}
+</tr>
+</tbody>
+</table>
+</div>
+{% endblock %}

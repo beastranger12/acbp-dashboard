@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.appelsiini.net/projects/chained/jquery.chained.js?v=0.9.10"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Filters</h2></center>
+    {% include 'smt_smpo_dashboard/prodfilter.html' %}
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Productivity Database</h2></center>
+    <div style="float:right">
+        <form id="login-form" class="form" action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #FD5825; color:white">EXPORT TO EXCEL</button>
+        </form>
+    </div>
+                <table class="table">
+                    <thead class="thead-dark" style="background-color: #3FABAF;">
+                        <tr>
+                            <th scope="col">PID</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Website</th>
+                            <th scope="col">EC Partition ID</th>
+                            <th scope="col">Phase</th>
+                            <th scope="col">RDA</th>
+                            <th scope="col">Task</th>
+                            <th scope="col">Sub_Task</th>
+                            <th scope="col">Productivity</th>
+                            <th scope="col">Timestamp</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in object %}
+                        <form id="login-form" class="form" action="" method="POST">
+                            {% csrf_token %}
+                        <tr>
+                            <input type="hidden" name="form_type" value="del">
+                            <input type="hidden" name="id" value="{{obj.pid}}">
+                            <td>{{obj.pid}}</td>
+                            <td>{{obj.brand}}</td>
+                            <td>{{obj.website}}</td>
+                            <td>{{obj.ec_partition_id}}</td>
+                            <td>{{obj.phase}}</td>
+                            <td>{{obj.user}}</td>
+                            <td>{{obj.task}}</td>
+                            <td>{{obj.sub_task}}</td>
+                            <td>{{obj.productivity}}</td>
+                            <td>{{obj.timestamp}}</td>
+                            <td><button type="submit" class="btn btn-primary">Delete</button></td> 
+                        </tr>
+                        </form>
+                        {% endfor %}
+                    </tbody>
+                </table>
+</div>   
+</body>
+</html>

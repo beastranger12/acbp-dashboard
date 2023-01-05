@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% comment %}
+This is the base template used for rendering all pages in this site. The
+templates themselves are preprocessed by the Django template engine to output
+the final response to be returned to the remote user.
+
+See https://docs.djangoproject.com/en/stable/topics/templates/ for more
+information about Django templates.
+
+On the client-side, bootstrap is used to render the pages. See
+https://getbootstrap.com/ for more about bootstrap.
+{% endcomment %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <link rel="icon" href="{% static "smt_smpo_dashboard/ico/favicon.ico" %}">
+        <title>{% block title %}SMT-SMPO-Dashboard{% endblock title %}</title>
+
+        <!-- Load Bootstrap with theme -->
+        <link type="text/css" rel="stylesheet" href="{% static bootstrap_css_url %}" />
+        <link type="text/css" rel="stylesheet" href="{% static bootstrap_theme_css_url %}" />
+
+        <!-- Extra CSS stylesheets -->
+        {% block extra_css_imports %}{# Block for extra CSS imports #}{% endblock extra_css_imports %}
+
+        <!-- Website specific CSS stylesheets -->
+        <link type="text/css" rel="stylesheet" href="{% static "smt_smpo_dashboard/site.css" %}" >
+
+        <!-- Page specific CSS code -->
+        {% block extra_css_code %}{# Block for extra CSS embedded code #}{% endblock extra_css_code %}
+
+        {% block css_main_inclusions %}
+        {% if show_unit_test %}
+        <link type="text/css" rel="stylesheet" href="{% static qunit_css_url %}" />
+        {% endif %}
+        {% endblock css_main_inclusions %}
+    </head>
+    <body>
+        {% block top_navbar %}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#global-navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">SMT-SMPO-Dashboard</a>
+                </div>
+                <div id="global-navbar" class="navbar-collapse collapse">
+                    <ul id="global-navbar-left" class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                    </ul>
+                    {# NOTE: Elements of class "navbar-right" are rendered on the page from right to left. #}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Support">
+                                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a target="_blank" href="https://w.amazon.com/index.php/Django/Octane/FIXME">User Guide</a></li>
+                                <li><a target="_blank" href="https://w.amazon.com/index.php/Django/Octane/FIXME">Issues</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                            <input id="global-search" type="text" placeholder="Search" class="form-control" data-provide="typeahead">
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            {% if user.is_authenticated %}
+                            <p class="navbar-text">Signed in as {{ user.get_username }}</p>
+                            {% else %}
+                            <p class="navbar-text">Viewing anonymously</p>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+        {% endblock top_navbar %}
+        {% block main_body %}
+        {% comment %}
+        All templates that extend the base template should implement the main_body
+        block.
+        {% endcomment %}
+        {% endblock main_body %}
+
+        {% comment %}
+        Output the CSRF token on every page. For more on how to use this token, see
+        https://docs.djangoproject.com/en/stable/ref/csrf/ .
+        {% endcomment %}
+        <div id="global-csrftoken">
+            {% csrf_token %}
+        </div>
+
+        <!-- Include Javascript libraries at the end of the html body. -->
+        <script type="text/javascript" src="{% static jquery_js_url %}"></script>
+        <script type="text/javascript" src="{% static bootstrap_js_url %}"></script>
+        <script type="text/javascript" src="{% static bootstrap_typeahead_js_url %}"></script>
+
+        <!-- Extra JS libraries -->
+        {% block extra_js_imports %}{# Block for extra JS imports #}{% endblock extra_js_imports %}
+
+        <!-- Website specific JS libraries -->
+        <script type="text/javascript" src="{% static "smt_smpo_dashboard/site.js" %}"></script>
+
+        <!-- Page specific JS code -->
+        {% block extra_js_code %}{# Block for extra JS embedded code #}{% endblock extra_js_code %}
+
+        {% block js_main_inclusions %}
+        {% if show_unit_test %}
+        <script type="text/javascript" src="{% static qunit_js_url %}"></script>
+        <script>
+        QUnit.config.autostart = false;
+        </script>
+        {% endif %}
+        {% endblock js_main_inclusions %}
+        {% block base_test_cases %}
+        {% if show_unit_test %}
+        <script>
+        QUnit.module("Base Template Test Cases");
+        QUnit.test("sanity test", function(assert) {
+            assert.ok(true, "Sanity test passed");
+        });
+        </script>
+        {% endif %}
+        {% endblock base_test_cases %}
+        {% block extra_test_cases %}
+        {% if show_unit_test %}
+        {% endif %}
+        {% endblock extra_test_cases %}
+    </body>
+</html>

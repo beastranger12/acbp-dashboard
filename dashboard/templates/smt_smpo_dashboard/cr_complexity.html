@@ -1,0 +1,44 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block headcontent %}
+<title>ScoreCard</title>
+{% endblock %}
+{% block content%}
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Crawl CR Score</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>
+                  <th scope="col">Website</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">ICR</th>
+                  <th scope="col">ICX</th>
+                  <th scope="col">BTR</th>
+                  <th scope="col">BTX</th>
+                  <th scope="col">ICS</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in obj %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td><input type="number" name="icr" min=0 max="5" required></td>
+                    <td><input type="number" name="icx" min=0 max="5" required></td>
+                    <td><input type="number" name="btr" min=0 max="5" required></td>
+                    <td><input type="number" name="btx" min=0 max="5" required></td>
+                    <td><input type="number" name="ics" min=0 max="5" required></td>
+                    <td><button type="submit">save</button></td>
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+    </div>
+{% endblock %}

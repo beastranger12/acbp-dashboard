@@ -1,0 +1,60 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Adhoc History</title>
+{% endblock %}
+{% block content %}
+<div class="jumbotron">
+    <form method="GET" action="/hist_adhoc">
+        <div class="form-group col-md-2 col-lg-2">
+            <label for="category">Associate</label>
+            <select id="category" class="form-control" name="rda">
+                <option selected>Choose...</option>
+                {% for cate in RDA %}
+                  {% for cat in cate %}
+                <option value="{{ cat }}">{{ cat }}</option>
+                  {% endfor %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group col-md-2 col-lg-2">
+            <label for="publishDateMin">Timestamp Start Date</label>
+            <input type="date" class="form-control" id="publishDateMin" name="date_min">
+        </div>
+        <div class="form-group col-md-2 col-lg-2">
+            <label for="publishDateMax">Timestamp End Date</label>
+            <input type="date" class="form-control" id="publishDateMax" name="date_max">
+        </div>
+        <div class="form-group">       
+        <button type="submit" class="btn btn-primary" style="background-color: #3FABAF;">Search</button>
+        </div>
+    </form>
+    
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Adhoc Activity Log</h2></center>
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+              <th scope="col">Associate</th>
+              <th scope="col">Adhoc Performed Date</th>
+              <th scope="col">Activity</th>
+              <th scope="col">Comments</th>
+              <th scope="col">Adhoc Hours</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Productivity</th>
+            </tr>
+        </thead>
+        <tbody> 
+                {% for ob in obj%}
+                <tr>
+                    <td>{{ob.user}}</td>
+                    <td>{{ob.timestamp}}</td>
+                    <td>{{ob.task}}</td>
+                    <td>{{ob.sub_task}}</td>
+                    <td>{{ob.website}}</td>
+                    <td>{{ob.brand_iteration}}</td>
+                    <td>{{ob.productivity}}</td>
+                {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+{% endblock %}

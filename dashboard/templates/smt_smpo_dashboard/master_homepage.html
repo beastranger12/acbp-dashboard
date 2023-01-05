@@ -1,0 +1,93 @@
+{% extends 'smt_smpo_dashboard/base2.html' %} 
+{% block headcontent %}
+<title>Welcome</title>
+{% endblock %}
+{% block content %}
+{% load static %}
+    <style type="text/css">
+img {
+  background: #fff;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4);/* change to alter the effect*/
+}
+.img_container{
+	
+  	background: #d16f6f;
+  	height: 105px;
+  	
+  	position: relative;
+  	background: -webkit-linear-gradient(#42614a,#FD5825);
+  background: -o-linear-gradient(#42614a,#FD5825); /* Opera 11.1-12.0 */
+  background: -moz-linear-gradient(#42614a,#FD5825); /* Firefox 3.6-15 */
+  background: linear-gradient(#42614a,#FD5825); 
+}
+.btn{
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+</style>
+<div class="wrapper fadeInDown">
+
+   <div class="img_container row">
+   	<div class="col-md-5"></div>
+   	<div class="col-md-5 img_class" style=" padding: 30px;">
+        <img src="{% static 'smt_smpo_dashboard/img/tabON.jpg' %}" style="height: 145px;"></div><div class="col-md-2"></div></div>
+       
+
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-9">
+                    <div id="login-box" class="col-md-12">
+                      <div class="col-md-7"></div>
+                         <div class="col-md-5">
+                          <h4 style="font-weight: bolder; color: #FD5825;"><b>Button to Refresh records</b></h4>
+        <form id="login-form" class="form" action="" method="POST">
+            {% csrf_token %}
+            
+            <button type="submit" class="btn btn-warning glyphicon glyphicon-refresh" name="form-group" value="tt" > Refresh</button>
+        </form>
+      </div></div></div></div>
+        <!--<table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">No. of Unique Domains</th>
+                  <th scope="col">No. of Scrapes</th>
+                  <th scope="col">No. of ASINS</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for ob in summary %}
+                <tr>
+                  <th scope="row">{{ob.0}}</th>
+                  <td>{{ob.1}}</td>
+                  <td>{{ob.2}}</td>
+                  <td>{{ob.3}}</td>
+                </tr>
+              {% endfor %}
+              <tr style="background-color: #3FABAF;">
+                <th scope="col">Year2020</th>
+                {% for i in tot %}
+                <th scope="col">{{i}}</th>
+                {% endfor %}
+              </tr>
+            </tbody>
+        </table>
+    </div>-->
+  {% endblock %}

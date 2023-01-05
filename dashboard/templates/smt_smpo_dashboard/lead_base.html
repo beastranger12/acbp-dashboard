@@ -1,0 +1,117 @@
+<!-- loads path to static file-->
+{% load static %}
+<head>
+<style>
+    .nav.navbar-nav.navbar-right li a span{
+    color: white;
+}
+.nav.navbar-nav li a span{
+    color: white;
+}
+</style>
+{% block headcontent %}
+{% endblock %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="{% static 'divs/images/favicon.ico' %}" type="image/x-icon">
+</head>
+<body style="font-size: medium;color:#222222; background-color:white; ">
+    <nav class="navbar navbar-expand-md fixed-top" style="border-radius: 0px; background-color:#FD5825;border-color:#FD5825; font-size: medium; font-weight: bold; color:white;">
+        <div class="container-fluid">
+            <!-- header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="font-size: large; color: white;" href="#">SMOpsDasboard</a>
+            </div>
+            <!-- iTems-->
+            <div class="collapse-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-plus">Sync-Up</span>
+                      </a>
+                      <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" target="_blank">
+                          <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                          RDA STATUS REPORT
+                        </a>
+                      </li>
+                      <li><a href="#" target="_blank">
+			<i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                        AUDITOR STATUS REPORT
+			</a>
+		     </li>
+                     <li><a href="#" target="_blank">
+                            <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                            SOD-EOD Report
+                            </a>
+                    </li>
+		    </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <span class="glyphicon glyphicon-plus">Allocation</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                CR Allocation
+                            </a>
+                            </li>
+                            <li><a href="#">
+                            <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                Audit Allocation
+                            </a>
+                            </li>
+                            <li><a href="#">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                AOA Allocation
+                                </a>
+                            </li>
+                            <li><a href="#">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                Website Allocation
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <span class="glyphicon glyphicon-plus">Re-Allocation</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a href="#">
+                                <i class="fa fa-key" aria-hidden="true"style="font-size:20px; margin-right: 8px;"></i>
+                                CR Re-Allocation
+                            </a>
+                            </li>
+                            <li><a href="#">
+                            <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                Audit Re-Allocation
+                            </a>
+                            </li>
+                            <li><a href="#">
+                                <i class="fa fa-sign-out" aria-hidden="true" style="font-size:20px; margin-right: 8px;"></i>
+                                Website Re-Allocation
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

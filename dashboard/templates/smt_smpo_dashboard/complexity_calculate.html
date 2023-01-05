@@ -1,0 +1,117 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Complexity</title>
+{% endblock %}
+{% block content %}
+<!-- <div style="float:left"><a href="{% url 'reject_com_st' %}"><button style="background-color: #3FABAF;">REJECTED COMPLEXITIES</button></a></div> -->
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">COMPLEXITY REPORT</h2></center>
+    <p>
+        <ul>
+            <li><font color="red">Complexity1 : Is PE crawl (without UA commands (excluding "pause" command)) needed to crawl the website?</font></li>
+            <li><font color="red">Complexity2 : Is PE crawl (with UA commands)</font></li>
+            <li><font color="red">ScrapeComplexity1 : Is it a JP retailer?</font></li>
+            <li><font color="red">ScrapeComplexity2 : Do we have to perform multiple container for the same page?</font></li>
+            <li><font color="red">ScrapeComplexity3 : Is mandatory data points available in unstructured text?</font></li>
+            <li><font color="red">ScrapeComplexity4 :  Do we have more than 4 scrape layouts?</font></li>
+        </ul>
+    </p>
+<form method="GET" action=".">
+<div class="form-group col-md-1">
+     <label for="category">RDA</label>
+     <select id="category" class="form-control" name="rda">
+         <option selected disabled>Choose...</option>
+            {% for cat in RDA %}
+                <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+      </select>
+</div>
+<button type="submit" class="btn btn-primary" style="background-color: #3FABAF;">Search</button>
+</form>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">Phase</th>
+                  <th scope="col">RDA</th>
+                  <th scope="col">Crawl Complexity1</th>
+                  <th scope="col">Crawl Complexity2</th>
+                  <th scope="col">Scrape Complexity1</th>
+                  <th scope="col">Scrape Complexity2</th>
+                  <th scope="col">Scrape Complexity3</th>
+                  <th scope="col">Scrape Complexity4</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in ob %}
+                <form method="POST" class="post-form" style="box-sizing: content-box" form_type="new">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.phase}}</td>
+                    <td>{{uob.rda}}</td>
+                    <td><font color="blue">{{uob.st_com1}}</font>
+                        <select name="com1">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.st_com2}}</font>
+                        <select name="com2">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.st_com3}}</font>
+                        <select name="com3">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.st_com4}}</font>
+                        <select name="com4">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.st_com5}}</font>
+                        <select name="com5">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.st_com6}}</font>
+                        <select name="com6">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="aprv" required>
+                            <option value="Approve">Approve</option>
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form> 
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}   

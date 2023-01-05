@@ -1,0 +1,29 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Productivity</title>
+{% endblock %}
+{% block content %}
+    <div id="form">
+        <h2 class="text-center text-black pt-5" style="font-weight: bolder; color: #FD5825;">Modify Benchmark</h2>
+            <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <center><h4 class="text-center text-info"></h4></center>
+                            <div class="form-group">
+                                <label for="website_name" class="text-info">Select file to be uploaded:</label><br>
+                                <input type="file" name="file_name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #3FABAF;">
+                            </div>
+                    </form>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

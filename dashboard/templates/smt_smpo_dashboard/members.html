@@ -1,0 +1,34 @@
+<!-- loads path to static file-->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'divs/background.css' %}" />
+    <link rel="shortcut icon" href="{% static 'divs/images/favicon1.ico' %}" type="image/x-icon">
+    <title>Members</title>
+</head>
+<body>
+    {% include 'smt_smpo_dashboard/navbar.html'%}
+    <div class="jumbotron" style="background: transparent">
+        <h3 style="font-weight: bolder; color: #3FABAF; text-align: center;">MEET THE TEAM</h3>
+        <table class="table">
+            <tbody>
+                <tr>
+                <td></td>
+                {% for i in mngr %}
+                    <td><span><img src="https://badgephotos.amazon.com/?uid={{i}}" style="width:45px;height:50px;" /></span><span>@{{i}}</span>
+                    </td>
+                {% endfor %}
+                <td></td>
+                </tr>
+                <tr>
+                    {% for j in usr %}
+                    <td><span><img src="https://badgephotos.amazon.com/?uid={{j}}" style="width:45px;height:50px;" /></span><span>@{{j}}</span></td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

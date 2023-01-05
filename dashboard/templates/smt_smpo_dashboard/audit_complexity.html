@@ -1,0 +1,120 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>complexity</title>
+{% endblock %}
+{% block content %}
+
+<div class="jumbotron" style="background: transparent">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">COMPLEXITY REPORT</h2></center>
+    <p>
+        <ul>
+            <li><font color="red">Is the retailer JS disabled?</font></li>
+            <li><font color="red">Are 2 or more cpids to be validated for a single part-model combination for the retailer?</font></li>
+            <li><font color="red">Is the unique CPID count >50% of the overall selection?</font></li>
+            <li><font color="red">Is the JP retailer being done by a non JP resource</font></li>
+            <li><font color="red">Do we need to validate audits against scraped JSON page?</font></li>
+            <li><font color="red">Mandatory data picked from unstructured text?(Fill Yes only if criteria is met)</font></li>
+            <li><font color="red">Catalogue issues present in the retailer?(Fill Yes only if criteria is met)</font></li>
+        </ul>
+    </p>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">Phase</th>
+                  <th scope="col">Auditor</th>
+                  <th scope="col">Complexity1</th>
+                  <th scope="col">Complexity2</th>
+                  <th scope="col">Complexity3</th>
+                  <th scope="col">Complexity4</th>
+                  <th scope="col">Complexity5</th>
+                  <th scope="col">Complexity6</th>
+                  <th scope="col">Complexity7</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in ob %}
+                <form method="POST" class="post-form" style="box-sizing: content-box" form_type="new">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <input type="hidden" name="dm" value="{{uob.domain}}">
+                    <td>{{uob.marketplace}}</td>
+                    <input type="hidden" name="mk" value="{{uob.marketplace}}">
+                    <td>{{uob.product_type}}</td>
+                    <input type="hidden" name="pt" value="{{uob.product_type}}">
+                    <input type="hidden" name="aud" value="{{uob.auditor}}">
+                    <input type="hidden" name="phase" value="{{uob.phase}}">
+                    <td>{{uob.phase}}</td>
+                    <td>{{uob.auditor}}</td>
+                    <td><font color="blue">{{uob.com1}}</font>
+                        <select name="com1">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.com2}}</font>
+                        <select name="com2">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.com3}}</font>
+                        <select name="com3">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.com4}}</font>
+                        <select name="com4">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.com5}}</font>
+                        <select name="com5">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.com6}}</font>
+                        <select name="com6">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><font color="blue">{{uob.com7}}</font>
+                        <select name="com7">
+                            <option value="select" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="aprv" required>
+                            <option value="Approve">Approve</option>
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form> 
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}   

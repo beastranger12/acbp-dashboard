@@ -1,0 +1,95 @@
+{% extends 'smt_smpo_dashboard/base2.html' %}
+{% block headcontent %}
+<title>WebsiteUpload</title>
+{% endblock %}
+{% block content %}
+{% load static %}
+<style type="text/css">
+.vl {
+  border-left: 2px solid grey;
+  height: 120px;
+}
+hr { 
+    background: url("{% static 'smt_smpo_dashboard/img/tabON.jpg' %}") no-repeat top center;
+    background-size: contain;
+    display: block;
+    height: 30px;
+    border: 0;
+    position: relative;
+}
+hr:before,
+hr:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: #d7d7d7;
+    height: 2px;
+    top: 8px;
+}
+hr:before {
+    left: 0;
+    right: 50%;
+    margin-right: 30px;
+}
+hr:after {
+    right: 0;
+    left: 50%;
+    margin-left: 30px;
+}
+</style>
+   <div id="form">
+    <br>
+        <h2 class="text-center text-black pt-5" style="font-weight: bolder; color: #FD5825;">Ingest Brands to BS</h2>
+            <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div class="col-md-2"> </div>
+                <div  class="col-md-8">
+                    <div id="login-box" class="col-md-12">
+                          <div id="login-column" class="col-md-6">
+
+                    <form id="login-form" class="form" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                            <center><h4 class="text-center text-info"></h4></center>
+                            <div class="form-group">
+                                  <label for="website_name" class="text-info">Select file to be uploaded:</label><br>
+                                  <div style="position:relative;">
+        <a class='btn btn-primary' href='javascript:;'>
+            Choose File...
+            <input type="file" name='file_name' style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+        </a>
+        &nbsp;
+        <span class='label label-info' id="upload-file-info"></span>
+    </div>
+                                  </div>
+                                  <div class="form-group" style="padding-left: 50px;">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #fc8403;">
+                            </div>
+                              </div>
+
+                            <div id="login-column" class="col-md-1 vl"></div>
+                            <div id="login-column" class="col-md-5">
+                                <br>
+        
+            <button type="submit" name="form-group" value="template" style="background-color: #FD5825; color:white">EXPORT SAMPLE TEMPLATE</button>
+        
+    </div></div><br>
+                            
+                    </form>
+                  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+<h4 style="font-weight: bolder; color: #FD5825;"><center>Error Log</center></h4>
+    <div>
+        <ul>
+            {% for i in error%}
+            <li>{{i}}</li>
+            {% endfor %}
+        </ul>
+    </div>   
+
+      
+{% endblock %}

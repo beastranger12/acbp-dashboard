@@ -1,0 +1,75 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Re-Allocate CR</title>
+{% endblock %}
+{% block content %}
+    <div id="form">
+        <h2 class="text-center text-black pt-5" style="font-weight: bolder; color: #FD5825;">Enter Domain Name</h2>
+            <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="" method="POST">
+                        {% csrf_token %}
+                            <h3 class="text-center text-info">Domain</h3>
+                            <div class="form-group">
+                                <input type="hidden" name="form_type" value="search">
+                                <label for="website_name" class="text-info">Domain Name:</label><br>
+                                <select name="website_name" id="website_name" class="form-control">
+                                    {% for i in domain_list %}
+                                    <option value="{{i}}">{{i}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #3FABAF;">
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron" style="background: transparent">
+        <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Search Results:</b></h2></center>
+            <table class="table">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">CR Reviewer</th>
+                      <th scope="col">Select Reviewer</th>
+                      <th scope="col">Re-Allocation Comments</th>
+                      <th scope="col"></th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for uob in obj %}
+                    <form method="POST" class="post-form" style="box-sizing: content-box">
+                        {% csrf_token %}
+                    <tr>
+                        <input type="hidden" name="id" value="{{uob.website_id}}">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{uob.domain}}</td>
+                        <td>{{uob.marketplace}}</td>
+                        <td>{{uob.product_type}}</td>
+                        <td>{{uob.cr_reviewer}}</td>
+                        <td><select name="rda" required>
+                            <option value="" selected disabled>Please select</option>
+                            {% for taskL in REVIEWER %} 
+                            <option value="{{taskL}}">{{taskL}}</option>
+                            {% endfor %}   
+                            </select>
+                        </td>
+                        <td><input type="text" name="comment"></td>
+                        <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                    </tr>
+                    </form> 
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endblock %}

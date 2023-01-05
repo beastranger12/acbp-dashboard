@@ -1,0 +1,73 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Adhoc</title>
+{% endblock %}
+{% block content %}
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Adhoc Requests</h2></center>
+    <div style="float: right;">
+        <form method="POST" class="post-form" style="box-sizing: content-box" onSubmit="return confirm('Are you sure you wish to Approve all?');">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="approve">
+        <button type="submit" style="background-color: #F26627;"><b><font color="white">Approve All</font></b></button>
+        </form>
+    </div>
+    <div style="float: left;">
+        <form method="GET" action="/approve_adhoc">
+        <div class="form-group">
+           <label for="category">Associate</label>
+            <select name="rda" required>
+                <option value="" selected disabled>--select--</option>
+                {% for i in assos %}
+                    {% for mk in i %}
+                    <option value="{{mk}}">{{mk}}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" class="btn btn-info btn-md" value="search"  style="background-color: #3FABAF;">
+        </div>
+        </form>
+    </div>
+    
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Associate</th>
+              <th scope="col">Adhoc Performed Date</th>
+              <th scope="col">Activity</th>
+              <th scope="col">Comments</th>
+              <th scope="col">Adhoc Hours</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Change Adhoc Hours</th>
+              <th scope="col">Approve/Reject</th>
+              <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody> 
+                {% for ob in obj%}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    {% for i in ob%}
+                    <td>{{i}}</td>
+                    {% endfor %}
+                    <input type="hidden" name="id" value="{{ob.0}}">
+                    <td><input type="number" step='0.01' value='0.00' placeholder='0.00' name="hours"></td>
+                    <td><select name="status" required>
+                            <option value="" selected disabled>--select--</option>
+                            <option value="Approved">Approve</option>
+                            <option value="Rejected">Reject</option>
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+            </form>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+{% endblock %}

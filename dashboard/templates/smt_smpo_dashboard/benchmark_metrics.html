@@ -1,0 +1,76 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Metrics</title>
+{% endblock %}
+{% block content%}
+<div class="jumbotron" style="background: transparent">
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Add Task Information</b></h2></center>
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Sub_Task</th>
+                <th scope="col">Lower Selection</th>
+                <th scope="col">Upper Selection</th>
+                <th scope="col">PTs lower limit</th>
+                <th scope="col">PTs upper limit</th>
+                <th scope="col">Productivity(in minutes)</th>
+                <th scope="col">Complexity</th>
+                <th scope="col">Parameter</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <form method="POST" class="post-form" style="box-sizing: content-box">
+                {% csrf_token %}
+            <tr>
+                <td><input type="text" name="task" required></td>
+                <td><input type="text" name="sub-task" required></td>
+                <td><input type="text" name="lower"></td>
+                <td><input type="text" name="upper"></td>
+                <td><input type="text" name="ptlower"></td>
+                <td><input type="text" name="ptupper"></td>
+                <td><input type="text" name="product" required></td>
+                <td><input type="text" name="complex" required></td>
+                <td><input type="text" name="paramet" required></td>
+                <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+            </tr>
+        </form>
+        </tbody>
+    </table>
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Details:</b></h2></center>
+    <table class="table">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+                <th scope="col">Sl.no</th>  
+                <th scope="col">Task</th>
+                <th scope="col">Sub_Task</th>
+                <th scope="col">Lower Selection</th>
+                <th scope="col">Upper Selection</th>
+                <th scope="col">PTs Lower limit</th>
+                <th scope="col">PTs Upper limit</th>
+                <th scope="col">Productivity</th>
+                <th scope="col">Complexity</th>
+                <th scope="col">Parameter</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for uob in obj %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{uob.task}}</td>
+                <td>{{uob.subtask}}</td>
+                <td>{{uob.lower_select}}</td>
+                <td>{{uob.higher_select}}</td>
+                <td>{{uob.lower_pt}}</td>
+                <td>{{uob.higher_pt}}</td>
+                <td>{{uob.productivity}}</td>
+                <td>{{uob.complexity}}</td>
+                <td>{{uob.parameter}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <form method="GET" action="/db">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="domain" placeholder="Domain..." />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="marketplace" placeholder="Marketplace..." />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="pt" placeholder="Product Type..." />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="category">Phase</label>
+                <select id="category" class="form-control" name="phase">
+                  <option selected>Choose...</option>
+                  {% for cat in PHASE %}
+                  <option value="{{ cat }}">{{ cat }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">RDA</label>
+                <select id="category" class="form-control" name="rda">
+                  <option selected>Choose...</option>
+                  {% for cat in rda %}
+                  <option value="{{ cat }}">{{ cat }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">Auditor</label>
+                <select id="category" class="form-control" name="auditor">
+                  <option selected>Choose...</option>
+                  {% for cat in auditor %}
+                  <option value="{{ cat }}">{{ cat }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">CR Reviewer</label>
+                <select id="category" class="form-control" name="reviwer">
+                  <option selected>Choose...</option>
+                  {% for cat in reviwer %}
+                  <option value="{{ cat }}">{{ cat }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">Status</label>
+                <select id="category" class="form-control" name="stat">
+                  <option selected>Choose...</option>
+                  {% for cat in stat %}
+                  <option value="{{ cat }}">{{ cat }}</option>
+                  {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">Feasibility</label>
+                <select id="category" class="form-control" name="feas">
+                  <option selected>Choose...</option>
+                  <option value="Feasible">Feasible</option>
+                  <option value="Infeasible">Infeasible</option>
+                  <option value="None">None</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2 col-lg-2">
+                <label for="publishDateMin">ScrapeETA date minimum</label>
+                <input type="date" class="form-control" id="publishDateMin" name="date_min">
+            </div>
+            <div class="form-group col-md-2 col-lg-2">
+                <label for="publishDateMax">ScrapeETA date maximum</label>
+                <input type="date" class="form-control" id="publishDateMax" name="date_max">
+            </div>
+            <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">Iterations Min</label>
+                <input type="number" min=0 class="form-control" id="viewCountMin" placeholder="0" name="iter_min">
+            </div>
+            <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">Iterations Max</label>
+                <input type="number" min=0 class="form-control" id="viewCountMin" placeholder="0" name="iter_max">
+            </div>
+        </div>        
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>

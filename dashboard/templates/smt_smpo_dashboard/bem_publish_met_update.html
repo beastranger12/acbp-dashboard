@@ -1,0 +1,56 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block headcontent %}
+<title>BEM_Publish_Metrics</title>
+{% endblock %}
+{% block content%}
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Metrics update - BEM PUBLISH</b></h2></center>
+    <div style="overflow-x: scroll;margin-left: 5em;overflow-y: visible;padding: 0;">
+        <table class="table" style="border-collapse: separate; border-spacing: 0; border-top: 1px solid grey;font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col" style="position: absolute;column-width: inherit;width: 5em;left: 0;top: auto;border-top-width: 1px;margin-top: -1px;">Brand</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col">Website</th>
+                  <th scope="col">No of Require Ontology attributes (Prior BEM)s</th>
+                  <th scope="col">No of Converted</th>
+                  <th scope="col">No of Require Ontology attributes (Post BEM)</th>
+                  <th scope="col">slots backfilled</th>
+                  <th scope="col">BEM attempted</th>
+                  <th scope="col">BEM converted</th>
+                  <th scope="col">BEM- Inaccurate selection</th>
+                  <th scope="col">BEM - Sample selection</th>
+                  <th scope="col">BEM/Publish Comments</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in obj %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.bid}}">
+                    <td style="position: absolute;column-width: inherit;width:5em;left: 0;top: auto;border-top-width: 1px;margin-top: -1px;">{{uob.brand}}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{uob.website}}</td>
+                    <td><input type="text" name="require_ontology_attributes_prior_count" required></td>
+                    <td><input type="text" name="converted_ontology_count" required></td>
+                    <td><input type="text" name="require_ontology_attributes_post_count" required></td>
+                    <td><input type="text" name="slots_backfilled_count" required></td>
+                    <td><input type="text" name="bem_attempted" required></td>
+                    <td><input type="text" name="bem_converted" required></td>
+                    <td><input type="text" name="bem_inaccurate_selection" required></td>
+                    <td><input type="text" name="bem_sample_selection" required></td>
+                    <td><input type="text" name="bem_publish_comment" required></td>
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}
+
+

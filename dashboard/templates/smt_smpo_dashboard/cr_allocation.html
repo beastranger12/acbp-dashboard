@@ -1,0 +1,83 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>CRAllocate</title>
+{% endblock %}
+{% block content %}
+        <div style="float: right;">
+            <ul>
+                {% for a in summary %}
+                <li>{{a}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="jumbotron" style="background: transparent">
+        <center><h2><b><font color="#F26627">ALLOCATE CR</font></b></h2></center>
+        <font color="white"><p>RDA and Reviewer should not be Same</p></font>
+            <table class="table">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">RDA</th>
+                      <th scope="col">CR Link</th>
+                      <th scope="col">SelectReviewer</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for uob in cr_object %}
+                    <form method="POST" class="post-form" style="box-sizing: content-box">
+                        {% csrf_token %}
+                    <tr>
+                        <input type="hidden" name="id" value="{{uob.website_id}}">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{uob.domain}}</td>
+                        <td>{{uob.marketplace}}</td>
+                        <td>{{uob.product_type}}</td>
+                        <td>{{uob.rda}}</td>
+                        <td>{{uob.CR_Link}}</td>
+                        <td><select name="cr_reviewer" required>
+                            <option value="" selected disabled>Please select</option>
+                            {% for taskL in REVIEWER %} 
+                            <option value="{{taskL}}">{{taskL}}</option>
+                            {% endfor %}   
+                            </select>
+                        </td>
+                        <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                    </tr>
+                    </form> 
+                    {% endfor %}
+                </tbody>
+            </table>
+            <center><h2><b><font color="#F26627">Allocated CR</font></b></h2></center>
+            <table class="table">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">RDA</th>
+                      <th scope="col">Reviewer</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for uob in already_exists%}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{uob.domain}}</td>
+                        <td>{{uob.marketplace}}</td>
+                        <td>{{uob.product_type}}</td>
+                        <td>{{uob.rda}}</td>
+                        <td>{{uob.cr_reviewer}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}   
+    
+    

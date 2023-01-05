@@ -1,0 +1,44 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Delete</title>
+{% endblock %}
+{% block content %}
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Open Feasibility Report</h2></center>
+    <div style="float: right;">
+        <form method="POST" class="post-form" style="box-sizing: content-box" form_type="new">
+        {% csrf_token %}
+            <button style="background-color: #FD5825; color:white"><b>DELETE ALL</b></button>
+        </form>    
+    </div>
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+              <th scope="col">Sl.no</th>
+              <th scope="col">RDA</th>  
+              <th scope="col">Marketplace</th>
+              <th scope="col">ProductType</th>
+              <th scope="col">Domain</th>
+              <th scope="col">Allocated Month</th>
+              <th scope="col">Phase</th>
+              <th scope="col">Feasibility</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for uob in ob%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{uob.rda}}</td>
+                <td>{{uob.marketplace}}</td>
+                <td>{{uob.product_type}}</td>
+                <td>{{uob.domain}}</td>
+                <td>{{uob.allocated_month}}</td>
+                <td>{{uob.phase}}</td>
+                <td>{{uob.feasible}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

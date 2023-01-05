@@ -1,0 +1,68 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block headcontent %}
+<title>Adhoc</title>
+{% endblock %}
+{% block content%}
+
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Adhoc Form</h2></center>
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+              <th scope="col">Associate</th>
+              <th scope="col">Activity</th>
+              <th scope="col">Comments</th>
+              <th scope="col">Adhoc Hours</th>
+              <th scope="col">Owner</th>
+              <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <form method="POST" class="post-form" style="box-sizing: content-box">
+                {% csrf_token %}
+                <tr>
+                    <td>{{user}}</td>
+                    <td><input type="text" name="Activity"></td>
+                    <td><input type="text" name="AdditionalInfo"></td>
+                    <td><input type="number" step='0.01' value='0.00' placeholder='0.00' name="Adhoc Hours"></td>
+                    <td><select name="Owner">
+                        <option value="" selected disabled>--select--</option>
+                        {% for mk in owner %}
+                            <option value="{{mk}}">{{mk}}</option>
+                        {% endfor %}
+                        </select></td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Adhoc Requests</h2></center>
+    <table class="table"  style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+              <th scope="col">Associate</th>
+              <th scope="col">Adhoc Performed date</th>
+              <th scope="col">Activity</th>
+              <th scope="col">Comments</th>
+              <th scope="col">Adhoc Hours</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Final Productivity</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for object in adh_obj %}
+                <tr>
+                    <td>{{object.user}}</td>
+                    <td>{{object.timestamp}}</td>
+                    <td>{{object.task}}</td>
+                    <td>{{object.sub_task}}</td>
+                    <td>{{object.website}}</td>
+                    <td>{{object.brand_iteration}}</td>
+                    <td>{{object.productivity}}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

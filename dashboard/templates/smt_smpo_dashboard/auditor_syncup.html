@@ -1,0 +1,97 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>AuditStatus</title>
+{% endblock %}
+{% block content %}
+<div style="float:left">
+    <form method="POST" class="post-form" style="box-sizing: content-box">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="phase">
+        <div class="form-group">
+            <label for="Phase" class="text-info">. Phase</label>
+            <select name="phase">
+                <option value="" selected disabled>--select--</option>
+                {% for taskL in PHASE %} 
+                <option value="{{taskL}}">{{taskL}}</option>
+                {% endfor %}   
+                </select>
+        </div>
+        <div class="form-group" style="float:left">
+            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #3FABAF;">
+        </div>
+    </form>
+</div>
+
+<div style="float: right;"><a href="{%url 'audit_queue_detail'%}"><button type="button">Detail View</button></a></div>
+<div class="jumbotron" style="background: transparent">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Auditor Scrape Details:</h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Auditor</th>
+                  <th scope="col">AuditYTS</th>
+                  <th scope="col">Pre-Audit Revert</th>
+                  <th scope="col">Audit WIP</th> 
+                  <th scope="col">Audit On-hold</th>
+                  <th scope="col">Reconfig Audit</th>
+                  <th scope="col">Reconfig RDA</th>
+                  <th scope="col">Approved</th>
+                  <th scope="col">Total</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in auditor %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    {% for ob in uob %}
+                        <center><td>{{ob|safe}}</td></center>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr style='background-color: powderblue;'>
+                    {% for tt in total %}
+                        <td><b>{{tt}}</b></td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <center><h2 style="font-weight: bolder; color: #FD5825;">Auditor Domain Details:</h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Auditor</th>
+                  <th scope="col">AuditYTS</th>
+                  <th scope="col">Pre-Audit Revert</th>
+                  <th scope="col">Audit WIP</th> 
+                  <th scope="col">Audit On-hold</th>
+                  <th scope="col">Reconfig Audit</th>
+                  <th scope="col">Reconfig RDA</th>
+                  <th scope="col">Approved</th>
+                  <th scope="col">Total</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in auditor1 %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    {% for ob in uob %}
+                        <center><td>{{ob|safe}}</td></center>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr style="background-color: #3FABAF;">
+                    {% for tt in total1 %}
+                        <td><b>{{tt}}</b></td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

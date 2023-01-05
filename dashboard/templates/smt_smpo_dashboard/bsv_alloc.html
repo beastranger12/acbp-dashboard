@@ -1,0 +1,47 @@
+{% extends 'smt_smpo_dashboard/base3.html' %}
+{% block headcontent %}
+<title>Allocate</title>
+{% endblock %}
+{% block content %}
+    
+    <br />
+    <div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Allocate Auditor</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Website</th>
+                  <th scope="col">Website Id</th>
+                  <th scope="col">Brand</th>
+                  <th scope="col">BSV Owner</th>
+                  <th scope="col">Select BSV Owner</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in data %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.bid}}">
+                    <td>{{uob.website}}</td>
+                    <td>{{uob.ec_partition_id}}</td>
+                    <td>{{uob.brand}}</td>
+                    <td>{{uob.bsv_owner}}</td>
+                    <td><select name="auditor" required>
+                        <option value="" selected disabled>Please select Auditor</option>
+                        {% for taskL in obj %} 
+                        <option value="{{taskL.user_name}}">{{taskL.user_name}}</option>
+                        {% endfor %}   
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form> 
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Master Edit</title>
+{% endblock %}
+{% block content %}
+<center><h2 style="font-weight: bolder; color: #FD5825;">Master Edit View</h2></center>
+<div class="jumbotron">
+        <div class="container" style="float: left;">
+                <form id="login-form" class="form" action="" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="phase" >
+                        <div class="form-group">
+                            <label for="website_name" class="text-info">Phase</label>
+                            <select name="phase">
+                                <option value="" selected disabled>Please select</option>
+                                {% for taskL in PHASE %} 
+                                <option value="{{taskL}}">{{taskL}}</option>
+                                {% endfor %}   
+                                </select>
+                        </div>
+                        <div class="form-group" style="float: left;">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #3FABAF;">
+                        </div>
+                </form>
+        </div>
+        <a href="{%url 'data_phase'%}" target="_blank"><button type="submit" style="background-color: #FD5825; color:white">BULK PHASE EDIT</button></a>
+ 
+            <table class="table" style="font-size:small;">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">Current Status</th>
+                      <th scope="col">Phase</th>
+                      <th scope="col">Iteration</th>
+                      <th scope="col">Change Phase</th>
+                      <th scope="col">Change Domain</th>
+                      <th scope="col">Change Marketplace</th>
+                      <th scope="col">Change ProductType</th>
+                      <th scope="col">Change Status</th>
+                      <th scope="col">Change Iteration</th>
+                      <th scope="col"></th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for uob in obj %}
+                    <form method="POST" class="post-form" style="box-sizing: content-box" form_type="new">
+                        {% csrf_token %}
+                    <tr>
+                        <input type="hidden" name="form_type" value="edit" >
+                        <td>{{forloop.counter}}</td>
+                        <td>{{uob.domain}}</td>
+                        <input type="hidden" name="domain" value="{{uob.domain}}">
+                        <td>{{uob.marketplace}}</td>
+                        <input type="hidden" name="marketplace" value="{{uob.marketplace}}">
+                        <td>{{uob.product_type}}</td>
+                        <input type="hidden" name="product_type" value="{{uob.product_type}}">
+                        <td>{{uob.status}}</td>
+                        <td>{{uob.phase}}</td>
+                        <td>{{uob.iterations}}</td>
+                        <td>
+                            <select name="phs">
+                                <option value="select">--select--</option>
+                                {% for taskL in PHASE %} 
+                                <option value="{{taskL}}">{{taskL}}</option>
+                                {% endfor %}   
+                                </select>
+                        </td>
+                        <td><input type="text" name="dom"></td>
+                        <td>
+                            <select name="market">
+                                <option value="select">--select--</option>
+                                {% for taskL in market %}
+                                <option value="{{taskL}}">{{taskL}}</option>
+                                {% endfor %}   
+                            </select>
+                        </td>
+                        <td><select name="pt">
+			                <option value="select">--select--</option>
+                            {% for taskL in PRODUCT_TYPE %} 
+                            <option value="{{taskL}}">{{taskL}}</option>
+                            {% endfor %}   
+                            </select>
+                        </td>
+                        <td><select name="stat">
+                            <option value="select">--select--</option>
+                            {% for taskL in Status %} 
+                            <option value="{{taskL}}">{{taskL}}</option>
+                            {% endfor %}   
+                            </select>
+                        </td>
+                        <td><input type="number" name="iter"></td>
+                        <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                    </tr>
+                    </form> 
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}

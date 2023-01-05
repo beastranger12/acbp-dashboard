@@ -1,0 +1,77 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block headcontent %}
+<title>PTC_status</title>
+{% endblock %}
+{% block content%}
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Status update - PTC</b></h2></center>
+        <table class="table">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                    <th scope="col">Sl.no</th>  
+                    <th scope="col">BID</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Website</th>
+                    <th scope="col">website_id</th>
+                    <th scope="col">Current Status</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">SubTask</th>
+                    <th scope="col"></th>
+                    <th scope="col">Marketplace</th>
+                    <th scope="col">ec_partition_id(website_id)</th>
+                    <th scope="col">Priority</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in qs %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.bid}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.bid}}</td>
+                    <td>{{uob.brand}}</td>
+                    <td>{{uob.website}}</td>
+                    <td>{{uob.ec_partition_id}}</td>
+                    <td>{{uob.bs_status}}</td> 
+                    <td><select name="task" class="form-control" id="comboA{{forloop.counter}}">
+                        <option value="" selected disabled>Please select</option> 
+                        <option value="PTC">PTC</option>
+                        </select>
+                    </td>
+                    <td>
+                    <select name="Subtask" class="form-control" id="comboB{{forloop.counter}}">
+                         
+                    </select>
+                    </td>
+                <script>
+                    document.getElementById("comboA{{forloop.counter}}").onchange = function(e){
+                       console.log(e.target.value)
+                       comboAValue = e.target.value
+                       if(comboAValue == "PTC")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Completed">Completed</option><option value="YTS">YTS</option><option value="WIP">WIP</option><option value="on-hold">on-hold</option>'
+                        if(comboAValue == "PTV")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Completed">Completed</option><option value="YTS">YTS</option><option value="WIP">WIP</option><option value="on-hold">on-hold</option>'
+                        if(comboAValue == "Brand_study")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Completed">Completed</option><option value="YTS">YTS</option><option value="WIP">WIP</option><option value="on-hold">on-hold</option>'
+                        if(comboAValue == "Brand_study_validation")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Completed">Completed</option><option value="YTS">YTS</option><option value="WIP">WIP</option><option value="on-hold">on-hold</option>'
+                        if(comboAValue == "Backfill_DQ")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Ingestion completed">Ingestion completed</option><option value="NM completed">NM completed</option><option value="VV completed">VV completed</option><option value="BEM completed">BEM completed</option><option value="Published">Published</option><option value="YTS">YTS</option><option value="on-hold">on-hold</option>'
+                        if(comboAValue == "Backfill_Manual")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="NM completed">NM completed</option><option value="VV completed">VV completed</option><option value="BEM completed">BEM completed</option><option value="Publised with ion file">Publised with ion file</option><option value="YTS">YTS</option><option value="on-hold">on-hold</option>'
+                    };
+                   </script>
+
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                    <td>{{uob.mkpl}}</td>
+                    <td>{{uob.ec_partition_id}}</td>
+                    <td>{{uob.priority}}</td> 
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

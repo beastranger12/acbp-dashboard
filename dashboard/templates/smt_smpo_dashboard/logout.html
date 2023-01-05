@@ -1,0 +1,19 @@
+<!-- loads path to static file-->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'smt_smpo_dashboard/background.css' %}" />
+</head>
+<body style="background-color:#EFEEE;">
+    {% include 'smt_smpo_dashboard/navbar.html'%}
+    <div class="jumbotron" style="background: transparent">
+        <div style="background-color: #f9a26c; text-align: center;">
+            <p>{{status}}</p>
+        </div>
+    </div>
+</body>
+</html>

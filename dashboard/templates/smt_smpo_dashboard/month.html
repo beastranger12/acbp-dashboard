@@ -1,0 +1,38 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Monthly Cost</title>
+{% endblock %}
+
+{% block content%}
+<center><h1 style="font-weight: bolder; color: #FD5825;"><b>Team Monthly Cost in %</b></h1></center>
+<div class="jumbotron">
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Owner</th>
+                  {% for l in MONTH %} 
+                  <th scope="col">{{l}}</th>
+                  <th scope="col">{{l}}</th>
+                  {% endfor %}
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    {% for l in MONTH %}
+                    <th scope="col">Prod</th>
+                    <th scope="col">Qual</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for ml in ben%}
+                <tr>
+                    {% for l in ml %}
+                    <td>{{l|safe}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

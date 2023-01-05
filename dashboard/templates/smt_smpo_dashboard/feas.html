@@ -1,0 +1,116 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block headcontent %}
+<title>Feasibility</title>
+{% endblock %}
+{% block content%}
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Feasibility Report</b></h2></center>
+    <div id="container">
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Website</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                    <tr>
+                        <input type="hidden" name="form_type" value="add">
+                        <td><select name="dom" required>
+                            <option value="" selected disabled>--select--</option>
+                            {% for op in qs %}
+                                <option value="{{op.domain}}">{{op.domain}}</option>
+                            {% endfor %}
+                            </select>
+                        </td>
+                        <td><select name="pt" required>
+                            <option value="" selected disabled>--select--</option>
+                            {% for op in PRODUCT_TYPE %}
+                                <option value="{{op}}">{{op}}</option>
+                            {% endfor %}
+                            </select>
+                        </td>
+                        <td><select name="mkpl" required>
+                            <option value="" selected disabled>--select--</option>
+                            {% for op in market %}
+                                <option value="{{op}}">{{op}}</option>
+                            {% endfor %}
+                            <option value="others">others</option>
+                            </select>
+                        </td>
+                        <td><button type="submit" style="background-color: #3FABAF;">ADD PRODUCT TYPE</button></td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>       
+    </div>
+        <table class="table">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>
+                  <th scope="col">Website</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">Feasibility</th>
+                  <th scope="col">Reason</th>
+                  <th scope="col">SelectionSize</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in qs %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td><select name="mkpl" required>
+                        <option value="" selected disabled>--select--</option>
+                        {% for mk in market %}
+                            <option value="{{mk}}">{{mk}}</option>
+                        {% endfor %}
+                        <option value="others">others</option>
+                        </select>
+                    </td> 
+                    <td><select name="task" class="form-control" id="comboA{{forloop.counter}}">
+                        <option value="" selected disabled>Please select</option>
+                        <option value="Feasible">Feasible</option>
+                        <option value="Infeasible">Infeasible</option> 
+                        </select>
+                    </td>
+                    <td>
+                    <select name="Subtask" class="form-control" id="comboB{{forloop.counter}}">
+                         
+                    </select>
+                    </td>
+                <script>
+                    document.getElementById("comboA{{forloop.counter}}").onchange = function(e){
+                       console.log(e.target.value)
+                       comboAValue = e.target.value
+                        if(comboAValue == "Feasible")
+                           document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Feasible">Feasible</option>'
+
+                        if(comboAValue == "Infeasible")
+                           document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Site not reachable / Access denied">Site not reachable / Access denied</option><option value="Irrelevant website">Irrelevant website</option><option value="No products found">No products found</option><option value="Home Page Redirecting to different domain">Home Page Redirecting to different domain</option><option value="Review Site/Blog Site">Review Site/Blog Site</option><option value="Amazon replica">Amazon replica</option><option value="Already crawled/scraped">Already crawled/scraped</option><option value="Irrelevant marketplace">Irrelevant marketplace</option><option value="Irrelevant product type">Irrelevant product type</option><option value="Low yield">Low yield</option><option value="No compatibility info found">No compatibility info found</option><option value="Catalogue issue">Catalogue issue</option><option value="Crawl infeasible">Crawl infeasible</option><option value="Scrape infeasible">Scrape infeasible</option><option value="Mandatory DP missing">Mandatory DP missing</option><option value="Final product page redirecting to different domain">Final product page redirecting to different domain</option><option value="Others">Others</option>'
+                    };
+                   </script>
+
+                    <td><input type="text" name="selection"></td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

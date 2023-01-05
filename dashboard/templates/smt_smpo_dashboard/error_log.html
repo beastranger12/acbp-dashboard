@@ -1,0 +1,52 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block content%}
+
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Error Log</b></h2></center>
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+              <th scope="col">Sl.no</th>
+              <th scope="col">Domain</th>
+              <th scope="col">MarketPlace</th>
+              <th scope="col">ProductType</th>
+              <th scope="col">Phase</th>
+              <th scope="col">RDA</th>
+              <th scope="col">Auditor</th>
+              <th scope="col">Sanity Path</th>
+              <th scope="col">CurrentStatus</th>
+              <th scope="col">ErrorFound</th>
+              <th scope="col">No.of Infected DP's</th>
+              <th scope="col">No. of Patterns</th>
+              <th scope="col">Justification</th>
+              <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for obj in aoa %}
+                <form method="POST" class="post-form" style="box-sizing: content-box" name="aoa_table2">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{obj.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{obj.domain}}</td>
+                    <td>{{obj.marketplace}}</td>
+                    <td>{{obj.product_type}}</td>
+                    <td>{{obj.phase}}</td>
+                    <td>{{obj.rda}}</td>
+                    <td>{{obj.aoa_by}}</td>
+                    <td><a href="{{obj.drive_path}}">path</a></td>
+                    <td>{{obj.aoa_status}}</td>
+                    <td>{{obj.error_found}}</td>
+                    <td>{{obj.no_of_infectedDP}}</td>
+                    <td>{{obj.no_of_pattern}}</td>
+                    <td><input type="text" name="comments"></td>
+                    <td><button type="submit">save</button></td>    
+                </tr>
+            </form>
+                {% endfor %}
+            </form>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Monthly Cost</title>
+{% endblock %}
+
+{% block content%}
+<center><h1 style="font-weight: bolder; color: #FD5825;"><b>Team Monthly Cost in %</b></h1></center>
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Leave Form</h2></center>
+    
+            <form method="POST" class="post-form" style="box-sizing: content-box">
+                {% csrf_token %}
+               <h3 class="text-center text-info">Select Date Range</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Date</label><br>
+                            <div class="form-row"><div class="col-xs-4 col-md-4 col-lg-4"><input type="date" class="hide-replaced" name="startDate" width="276" /></div></div>
+                        </div>
+
+                        
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                        </div>
+            </form>
+        
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Leaves</h2></center>
+    <div class="jumbotron">
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">User</th>
+                  <th scope="col">Leave Date</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                
+                {% for object in planner %}
+                <tr>
+                    <td>{{object.user}}</td>
+                    <td>{{object.timestamp}}</td>
+                    
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+</div>
+{% endblock %}

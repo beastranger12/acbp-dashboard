@@ -1,0 +1,51 @@
+{% extends 'smt_smpo_dashboard/stakeholder_navbar.html' %} 
+{% block content%}
+<div class="jumbotron">
+    <p style="font-size:17px;color: #FD5825;  text-decoration: underline; font-weight: 800; text-align: center;">EN - Overall website Status</p>
+    	<table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  
+                  <th scope="col">EN - Overall website Status</th>
+                  <th scope="col">Grand Total</th>
+                  
+                  
+                </tr>
+            </thead>
+            
+            <tbody>
+        
+    	{% for ml in tot%}
+    	<tr>
+    	<td>{{ml.h}}</td>
+    	<td>{{ml.v}}</td>
+    </tr>
+    	{% endfor %}
+    </tbody>
+</table>
+<p style="font-size:17px;color: #FD5825;  text-decoration: underline; font-weight: 800; text-align: center;">Non-EN - Overall website Status</p>
+<table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  
+                  <th scope="col">Non EN - Overall website Status</th>
+                  <th scope="col">Grand Total</th>
+                  
+                  
+                </tr>
+            </thead>
+            
+            <tbody>
+        
+    	{% for ml in tot2%}
+    	<tr>
+    	<td>{{ml.h}}</td>
+    	<td>{{ml.v}}</td>
+    </tr>
+    	{% endfor %}
+    </tbody>
+</table>
+    </b></h2>
+    
+</div>
+{% endblock %}

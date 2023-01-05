@@ -1,0 +1,159 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <form method="GET" action="/view_db">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="brand" placeholder="Domain..." />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="ec_partition_id" placeholder="EC Partition Id" />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="language" placeholder="website" />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="backfill_type" placeholder="Backfill type" />
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                            <i class="fa fa-search"></i>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-1">
+                <label for="category">Month</label>
+                <select id="category" class="form-control" name="month">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">First level SSP status</label>
+                <select id="category" class="form-control" name="first_level_ssp_status">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">Program /Use-case</label>
+                
+                  <select id="category" class="form-control" name="program_usecase">
+                  <option selected>Choose...</option>
+                  
+                </select>
+                
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">MKPL</label>
+                
+               <select id="category" class="form-control" name="mkpl">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category"># keys avl in website</label>
+                <select id="category" class="form-control" name="mkpl">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-1">
+                <label for="category">Scrape metric > 20%</label>
+                
+                <select id="category" class="form-control" name="scrape_metric">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-2 col-lg-2">
+                <label for="publishDateMin">Actionable for Backfill?</label>
+                <!--<input type="date" class="form-control" id="publishDateMin" name="date_min">-->
+                <select id="category" class="form-control" name="is_backfill">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-2 col-lg-2">
+                <label for="publishDateMax"># of keys</label>
+                <select id="category" class="form-control" name="keys_count">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div></div>
+            <div class="form-row">
+            <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin"># keys > 20</label>
+                <select id="category" class="form-control" name="keys_count_gt_20">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">UEC reflecting</label>
+                <select id="category" class="form-control" name="uec_reflection_status">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">"SSL 
+Is Auto-KVP completed"</label>
+                <select id="category" class="form-control" name="ssl_auto_kvp_status">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            
+            <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">Brand status</label>
+                <select id="category" class="form-control" name="brand_status">
+                  <option selected>Choose...</option>
+                  
+                </select>
+            </div>
+            <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">Business request</label>
+                <input type="text"  class="form-control" id="viewCountMin" placeholder="" name="business_request">
+            </div>
+             <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">Backfill type</label>
+                <input type="text"  class="form-control" id="viewCountMin" placeholder="" name="backfill_type">
+            </div>
+             <div class="form-group col-md-1 col-lg-1">
+                <label for="viewCountMin">Brand Iteration</label>
+                <input type="number" min=0 class="form-control" id="viewCountMin" placeholder="0" name="brand_iteration">
+            </div>
+        </div>        
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>

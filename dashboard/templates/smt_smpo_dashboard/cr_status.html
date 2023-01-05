@@ -1,0 +1,48 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block content%}
+    <div class="jumbotron">
+        <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Reviewer Status</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">RDA</th>
+                  <th scope="col">CrawlJobId</th>
+                  <th scope="col">CR Link</th>
+                  <th scope="col">Current Status</th>
+                  <th scope="col">SubTask</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in cr_object %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{object.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{object.domain}}</td>
+                    <td>{{object.marketplace}}</td>
+                    <td>{{object.product_type}}</td>
+                    <td>{{object.rda}}</td>
+                    <td>{{object.crawl_jobId}}</td>
+                    <td><a href="{{object.CR_Link}}" target="_blank">{{object.CR_Link}}</a></td>
+                    <td>{{object.status}}</td>
+                    <td><select name="task" required>
+                        <option value="" selected disabled>Please select</option>
+                        <option value="CR Reconfig(RDA)">CR Reconfig(RDA)</option>
+                        <option value="CR approved">Approve CR</option>   
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
