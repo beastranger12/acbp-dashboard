@@ -1,0 +1,161 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Status</title>
+{% endblock %}
+{% block content%}
+<div class="jumbotron">
+<center><h2 style="font-weight: bolder; color: #FD5825;"><b>Retailer Status</b></h2></center>
+<div id="container">
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+                <th scope="col">Website</th>
+                <th scope="col">ProductType</th>
+                <th scope="col">Marketplace</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <form method="POST" class="post-form" style="box-sizing: content-box">
+                {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="form_type" value="add">
+                    <td><select name="dom" required>
+                        <option value="" selected disabled>--select--</option>
+                        {% for op in qs %}
+                            <option value="{{op.domain}}">{{op.domain}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                    <td><select name="pt" required>
+                        <option value="" selected disabled>--select--</option>
+                        {% for op in PRODUCT_TYPE %}
+                            <option value="{{op}}">{{op}}</option>
+                        {% endfor %}
+                        </select>
+                    </td>
+                    <td><select name="mkpl" required>
+                        <option value="" selected disabled>--select--</option>
+                        {% for op in market %}
+                            <option value="{{op}}">{{op}}</option>
+                        {% endfor %}
+                        <option value="others">others</option>
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">ADD PRODUCT TYPE</button></td>
+                </tr>
+            </form>
+        </tbody>
+    </table>       
+</div>
+
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+                <th scope="col">Sl.no</th>  
+                <th scope="col">Website</th>
+                <th scope="col">Marketplace</th>
+                <th scope="col">ProductType</th>
+                <th scope="col">Phase</th>
+                <th scope="col">Current Status</th>
+                <th scope="col">Task</th>
+                <th scope="col">SubTask</th>
+                <th scope="col"></th>
+                
+            </tr>
+        </thead>
+        
+        <tbody>
+        {% for uob in qs1 %}
+        <form method="POST" class="post-form" style="box-sizing: content-box">
+        {% csrf_token %}
+            <tr>
+                <input type="hidden" name="form_type" value="retailer">
+                <input type="hidden" name="id" value="{{uob.website_id}}">
+                <td>{{forloop.counter}}</td>
+                <td>{{uob.domain}}</td>
+                <td>{{uob.marketplace}}</td>
+                <td>{{uob.product_type}}</td>
+                <td>{{uob.phase}}</td>
+                <input type="hidden" name="prev_status" value="{{uob.status}}">
+                <td>{{uob.status}}</td>
+                    <td><select name="task" class="form-control" id="comboA{{forloop.counter}}">
+                        <option value="" selected disabled>Please select</option>
+                        <option value="Crawl">Crawl</option>
+                        <option value="Scrape">Scrape</option>  
+                        <option value="Uploaded">Uploaded</option>
+                        <option value="Dropped">Dropped</option> 
+                        </select>
+                    </td>
+                <td>
+                    <select name="Subtask" class="form-control" id="comboB{{forloop.counter}}">
+                            
+                    </select>
+                </td>
+                <script>
+                    document.getElementById("comboA{{forloop.counter}}").onchange = function(e){
+                        console.log(e.target.value)
+                        comboAValue = e.target.value
+                        if(comboAValue == "Crawl")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Hybrid crawl running">Hybrid crawl running</option><option value="Raised CR">Raised CR</option><option value="CR reconfig(Reviewer)">CR reconfig(Reviewer)</option><option value="Normal Crawl Running">Normal Crawl Running</option><option value="Adhoc Crawl Running">Adhoc Crawl Running</option><option value="Search Crawl Running">Search Crawl Running</option>'
+                        if(comboAValue == "Scrape")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Scrape YTS">Scrape YTS</option><option value="Scrape Config WIP">Scrape Config WIP</option><option value="Sent for Audit">Sent for Audit</option><option value="Reconfig-Audit">Reconfig-Audit</option><option value="Pre-Audit Revert (Audit)">Pre-Audit Revert (Audit)</option>'
+                        if(comboAValue == "Uploaded")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Uploaded">Uploaded</option>'
+                        if(comboAValue == "Dropped")
+                            document.getElementById("comboB{{forloop.counter}}").innerHTML = '<option value="Dropped">Dropped</option>'
+                    
+                    };
+                    </script>
+                <td>
+                    <button type="submit" name="but" value="addition" style="background-color: #3FABAF;">save</button>
+                    <input type="hidden" name="dum" value="{{uob.sod_eod}}">
+                    <button type="submit" name="but" value="action" style="background-color:{{uob.sod_eod}};">&#9824;</button>
+                </td>
+            </tr>
+        </form> 
+        {% endfor %}
+        </tbody>
+    </table>
+    <table class="table" style="font-size:small;">
+        <thead class="thead-dark" style="background-color: #3FABAF;">
+            <tr>
+                <th scope="col">Sl.no</th>  
+                <th scope="col">Website</th>
+                <th scope="col">Marketplace</th>
+                <th scope="col">ProductType</th>
+                <th scope="col">Phase</th>
+                <th scope="col">Action Items</th>
+                <th scope="col">Current Status</th>
+                <th scope="col">RDA Comments</th>
+                <th scope="col">Auditor Comments</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        {% for uob in qs2 %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{uob.domain}}</td>
+                <td>{{uob.marketplace}}</td>
+                <td>{{uob.product_type}}</td>
+                <td>{{uob.phase}}</td>
+                <td>
+                    <form method="POST" class="post-form" style="box-sizing: content-box">
+                        {% csrf_token %}
+                        <input type="hidden" name="form_type" value="action">
+                        <input type="hidden" name="id" value="{{uob.website_id}}">
+                        <button type="submit" style="background-color:{{uob.sod_eod}};">&#9824;</button>
+                    </form> 
+                </td>
+                <td>{{uob.status}}</td>
+                <td>{{uob.scrape_comment}}</td>
+                <td>{{uob.audit_comment}}</td>
+            </tr>
+            </form> 
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

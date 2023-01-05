@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.appelsiini.net/projects/chained/jquery.chained.js?v=0.9.10"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Filters</h2></center>
+    {% include 'smt_smpo_dashboard/filter.html' %}
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Site-Trainer Details:</b></h2></center>
+    <div style="float:right">
+        <form id="login-form" class="form" action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #FD5825; color:white">EXPORT TO EXCEL</button>
+        </form>
+    </div>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">RDA</th>
+                  <th scope="col">Domain</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">Phase</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Crawl ETA</th>
+                  <th scope="col">ScrapeETA</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in det_obj %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.rda}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.phase}}</td>
+                    <td>{{uob.status}}</td>
+                    <td>{{uob.crawl_ETA}}</td>
+                    <td>{{uob.scrape_ETA}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>   
+</body>
+</html>

@@ -1,0 +1,106 @@
+<html>
+<!-- loads path to static file-->
+{% load static %}
+
+    <head>
+        <title>Throttle</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="{% static 'smt_smpo_dashboard/ico/favicon1.ico' %}" type="image/x-icon">
+
+    </head>
+    <body>
+    <div class="jumbotron" style="background: transparent">
+        <center><h2><b><font color="#F26627">Throttle Details</font></b></h2></center>
+            <table class="table" style="font-size:small;">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">Phase</th>
+                      <th scope="col">RequestDate</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">ApprovedDate/Pending</th>
+                      <th scope="col">AvailableThrottle/Requested</th>available_Throttle #format - 24000-default-NA
+                      <th scope="col"></th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for uob in obj %}
+                    <form method="POST" class="post-form" style="box-sizing: content-box">
+                        {% csrf_token %}
+                    <tr>
+                        <input type="hidden" name="form_type" value="new">
+                        <input type="hidden" name="id" value="{{uob.website_id}}">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{uob.domain}}</td>
+                        <td>{{uob.marketplace}}</td>
+                        <td>{{uob.product_type}}</td>
+                        <td>{{uob.phase}}</td>
+                        <td><div class="form-row"><input type="date" class="hide-replaced" name="request_date" /></div></td>
+                        <td>
+                            <select name="status" required>
+                                <option value="" selected disabled>select</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                        </td>
+                        <td><div class="form-row"><input type="date" class="hide-replaced" name="approved_date" /></div></td>
+                        <td><input type="text" name="throttle"></td>
+                        <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                    </tr>
+                    </form> 
+                    {% endfor %}
+            </tbody>
+        </table>
+        <center><h2><b><font color="#F26627">Pending Throttle Details</font></b></h2></center>
+            <table class="table">
+                <thead class="thead-dark" style="background-color: #3FABAF;">
+                    <tr>
+                      <th scope="col">Sl.no</th>  
+                      <th scope="col">Website</th>
+                      <th scope="col">Marketplace</th>
+                      <th scope="col">ProductType</th>
+                      <th scope="col">Owner</th>
+                      <th scope="col">RequestDate</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">ApprovedDate</th>
+                      <th scope="col">AvailableThrottle</th>available_Throttle #format - 24000-default-NA
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for uob in pending %}
+                    <form method="POST" class="post-form" style="box-sizing: content-box">
+                        {% csrf_token %}
+                    <tr>
+                        <input type="hidden" name="form_type" value="pending">
+                        <input type="hidden" name="id" value="{{uob.website_id}}">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{uob.domain}}</td>
+                        <td>{{uob.marketplace}}</td>
+                        <td>{{uob.product_type}}</td>
+                        <td>{{uob.throttle_owner}}</td>
+                        <td>{{uob.Throttle_request_date}}</td>
+                        <td>
+                            <select name="status" required>
+                                <option value="" selected disabled>select</option>
+                                <option value="Approved">Approved</option>
+                            </select>
+                        </td>
+                        <td><div class="form-row"><input type="date" class="hide-replaced" name="approved_date" /></div></td>
+                        <td><input type="text" name="throttle"></td>
+                        <td><button type="submit">save</button></td>
+                    </tr>
+                    </form> 
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </body>
+</html>

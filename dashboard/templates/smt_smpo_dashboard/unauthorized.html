@@ -1,0 +1,44 @@
+{% extends "smt_smpo_dashboard/base.html" %}
+{% load staticfiles %}
+
+{% block title %}SMT-SMPO-Dashboard - Unauthorized{% endblock %}
+
+{% block top_navbar %}{% endblock top_navbar %}
+
+{% block main_body %}
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Unauthorized</h3>
+    </div>
+    <div class="panel-body">
+        <h1>
+        Authentication failed. This site requires authentication using
+        <a href="https://midway.amazon.com/">Midway</a> credentials. Please
+        check that your Midway credentials are setup correctly and try again.
+        {% if is_admin_login %}
+        You also need to be an administrator to this website.
+        {% endif %}
+        Contact the site administrators if you need further assistance.
+        </h1>
+    </div>
+</div>
+{% endblock main_body %}
+
+{% block extra_js_code %}
+<script>
+$(function() {
+    $('body').css('padding-top', '0px');
+});
+</script>
+{% endblock extra_js_code %}
+
+{% block extra_test_cases %}
+{% if show_unit_test %}
+<script>
+QUnit.module("Unauthorized Template Test Cases");
+QUnit.test("sanity test", function(assert) {
+    assert.ok(true, "this test is fine");
+});
+</script>
+{% endif %}
+{% endblock extra_test_cases %}

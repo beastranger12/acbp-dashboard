@@ -1,0 +1,37 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %} 
+{% block headcontent %}
+<title>Welcome</title>
+{% endblock %}
+
+{% block content%}
+    <div class="jumbotron">
+        <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Monthly Crawl Scrape Stats 2020</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Month</th>
+                  <th scope="col">No. of Feasible Scrape</th>
+                  <th scope="col">No. of unique Domains approved</th>
+                  <th scope="col">No. of Scrapes approved</th>
+                  <th scope="col">Quality</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for ob in summary %}
+                <tr>
+                  {% for i in ob %}
+                  <td>{{i}}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+              <tr style="background-color: #3FABAF;">
+                <td>Year2020</td>
+                {% for i in tot %}
+                    <td>{{i}}</td>
+                {% endfor %}
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

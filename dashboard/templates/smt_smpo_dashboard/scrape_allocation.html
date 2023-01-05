@@ -1,0 +1,84 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Allocate</title>
+{% endblock %}
+{% block content %}
+    <div style="float: right;">
+        <a href="{%url 'audit_allocation'%}" target="_blank"><button type="submit" style="background-color: #3FABAF; color:black">View Details</button></a>
+    </div>
+    <br />
+    <div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Allocate Auditor</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">SelectionSize</th>
+                  <th scope="col">Phase</th>
+                  <th scope="col">RDA</th>
+                  <th scope="col">Select Auditor</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in scrape_object %}
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.scrape_selection_size}}</td>
+                    <td>{{uob.phase}}</td>
+                    <td>{{uob.rda}}</td>
+                    <td><select name="auditor" required>
+                        <option value="" selected disabled>Please select Auditor</option>
+                        {% for taskL in Auditor %} 
+                        <option value="{{taskL}}">{{taskL}}</option>
+                        {% endfor %}   
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form> 
+                {% endfor %}
+            </tbody>
+        </table>
+        <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Auditor Already Exists</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">Phase</th>
+                  <th scope="col">SelectionSize</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Auditor</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in already_exists %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.phase}}</td>
+                    <td>{{uob.scrape_selection_size}}</td>
+                    <td>{{uob.status}}</td>
+                    <td>{{uob.auditor}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

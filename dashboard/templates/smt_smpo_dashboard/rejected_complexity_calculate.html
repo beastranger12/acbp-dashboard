@@ -1,0 +1,95 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Allocate</title>
+{% endblock %}
+{% block content %}
+<div class="jumbotron" style="background: transparent">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">REJECTED COMPLEXITY REPORT</h2></center>
+    <p>
+        <ul>
+            <li><font color="red">Complexity1 : Is PE crawl (without UA commands (excluding "pause" command)) needed to crawl the website?</font></li>
+            <li><font color="red">Complexity2 : Is PE crawl (with UA commands)</font></li>
+            <li><font color="red">com1 : Is it a JP retailer?</font></li>
+            <li><font color="red">com2 : Do we have to perform multiple container for the same page?</font></li>
+            <li><font color="red">com3 : Is mandatory data points available in unstructured text?</font></li>
+            <li><font color="red">com4 :  Do we have more than 4 scrape layouts?</font></li>
+        </ul>
+    </p>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">Website</th>
+                  <th scope="col">Marketplace</th>
+                  <th scope="col">ProductType</th>
+                  <th scope="col">Phase</th>
+                  <th scope="col">Crawl Complexity1</th>
+                  <th scope="col">Crawl Complexity2</th>
+                  <th scope="col">Scrape Complexity1</th>
+                  <th scope="col">Scrape Complexity2</th>
+                  <th scope="col">Scrape Complexity3</th>
+                  <th scope="col">Scrape Complexity4</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in ob %}
+                <form method="POST" class="post-form" style="box-sizing: content-box" form_type="new">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="id" value="{{uob.website_id}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.domain}}</td>
+                    <td>{{uob.marketplace}}</td>
+                    <td>{{uob.product_type}}</td>
+                    <td>{{uob.phase}}</td>
+                    <td>{{uob.st_com1}}
+                        <select name="st_com1">
+                            <option value="" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>{{uob.st_com2}}
+                        <select name="st_com2">
+                            <option value="" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>{{uob.st_com3}}
+                        <select name="st_com3">
+                            <option value="" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>{{uob.st_com4}}
+                        <select name="st_com4">
+                            <option value="" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>{{uob.st_com5}}
+                        <select name="st_com5">
+                            <option value="" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>{{uob.st_com6}}
+                        <select name="st_com6">
+                            <option value="" selected disabled>---</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">save</button></td>
+                </tr>
+                </form> 
+                {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}   

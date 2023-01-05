@@ -1,0 +1,11 @@
+{% comment %}
+Just define the elements needed to display the QUnit report in the panel. The
+CSS and JS libraries are loaded from the base template.
+{% endcomment %}
+<div class="panel-body" style="background-color:white;padding:10px">
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+</div>
+<script>
+QUnit.start();
+</script>

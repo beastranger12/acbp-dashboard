@@ -1,0 +1,88 @@
+{% extends 'smt_smpo_dashboard/main_navbar.html' %}
+{% block headcontent %}
+<title>Roles</title>
+{% endblock %}
+{% block content%}
+<div class="jumbotron">
+    <div>
+        <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Add Users</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">UserName</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Special Role1</th>
+                  <th scope="col">Special Role2</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <form method="POST" class="post-form" style="box-sizing: content-box">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="form_type" value="create">
+                    <td><input type="text" name="user"></td>
+                    <td>
+                        <input type="radio" name="role" value="auditor">
+                        <label for="male">Auditor</label>
+                        <input type="radio" name="role" value="sme">
+                        <label for="female">SME</label>
+                        <input type="radio" name="role" value="manager">
+                        <label for="female">Manager</label>
+                        <input type="radio" name="role" value="stakeholders">
+                        <label for="female">Stake holders</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="srole1" value="lead">
+                        <label for="male">Lead</label>
+                        <input type="radio" name="srole1" value="None">
+                        <label for="female">None</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="srole2" value="master">
+                        <label for="male">Master Update</label>
+                        <input type="radio" name="srole2" value="None">
+                        <label for="female">None</label>
+                    </td>
+                    <td><button type="submit" style="background-color: #3FABAF;">Save</button></td>
+                </tr>
+            </form>
+            </tbody>
+        </table>
+    </div> 
+    </div>
+    <div class="jumbotron">
+    <center><h4 style="font-weight: bolder; color: #FD5825;"><b>User Details:</b></h4></center>
+        <table class="table">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">User</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Special Role1</th>
+                  <th scope="col">Special Role2</th>
+                  <th scope="col"></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in obj %}
+                <form method="POST" class="post-form" style="box-sizing: content-box" onSubmit="return confirm('Are you sure you wish to delete?');">
+                    {% csrf_token %}
+                <tr>
+                    <input type="hidden" name="form_type" value="del">
+                    <input type="hidden" name="id" value="{{uob.uid}}">
+                    <td>{{forloop.counter}}</td>
+                    <td>{{uob.user_name}}</td>
+                    <td>{{uob.user_role}}</td>
+                    <td>{{uob.special_role1}}</td>
+                    <td>{{uob.special_role2}}</td>
+                    <td><button type="submit" style="background-color: #3FABAF;">Delete</button></td>
+                </tr>
+            </form>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'smt_smpo_dashboard/base2.html' %}
+{% block headcontent %}
+<title>WebsiteUpload</title>
+{% endblock %}
+{% block content %}
+   <div id="form">
+        <h2 class="text-center text-black pt-5" style="font-weight: bolder; color: #FD5825;">Upload Website Allocation File</h2>
+            <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                         <div style="float:right">
+        <form id="login-form" class="form" action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" name="form-group" value="tt" style="background-color: #FD5825; color:white">S</button>
+        </form>
+    </div>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<h4 style="font-weight: bolder; color: #FD5825;"><center>Error Log</center></h4>
+    
+    
+      
+{% endblock %}

@@ -1,0 +1,26 @@
+<!-- loads path to static file-->
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'smt_smpo_dashboard/home.css' %}" />
+<link rel="shortcut icon" href="{% static 'smt_smpo_dashboard/ico/favicon1.ico' %}" type="image/x-icon">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACBP-BACKFILL DASHBOARD</title>
+</head>
+<body>
+    
+    {% include 'smt_smpo_dashboard/navbar.html'%}
+    <div class="jumbotron" style="background: transparent">
+        <div style="float: right;">
+            <p><font color="#325D79"><b>Have a look at our wiki pages:</b></font></p>
+            <ul>
+                <li><a href="https://share.amazon.com/sites/apc2019/_layouts/15/WopiFrame2.aspx?sourcedoc={EF5FCC46-46DA-48F3-A285-CAF5536C8593}&file=ACBP%20end%20to%20end%20SOP%20using%20DQuest%202020.docx&action=default" target="_blank">BACKFILL WIKI</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends 'smt_smpo_dashboard/lead_base.html' %}
+{% block headcontent %}
+<title>Overall Status</title>
+{% endblock %}
+{% block content %}
+
+<div style="float:left">
+    <form method="POST" class="post-form" style="box-sizing: content-box">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="phase">
+        <div class="form-group">
+            <label for="Phase" class="text-info">Phase</label>
+            <select name="phase">
+                <option value="" selected disabled>--select--</option>
+                {% for taskL in PHASE %} 
+                <option value="{{taskL}}">{{taskL}}</option>
+                {% endfor %}   
+                </select>
+        </div>
+        <div class="form-group" style="float:left">
+            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #3FABAF;">
+        </div>
+    </form>
+</div>
+<div style="float: right;">
+    <a href="{%url 'site_trainer_details'%}"><button type="button" style="background-color: #3FABAF; color:black;">RDA Detail View</button></a>
+</div>
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;"><b>Site-Trainer Details:</b></h2></center>
+        <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  <th scope="col">Sl.no</th>  
+                  <th scope="col">RDA</th>
+                  <th scope="col">Crawl YTS</th>
+                  <th scope="col">Crawl CR</th>
+                  <th scope="col">Crawl Running</th>
+                  <th scope="col">Distinct Crawls</th>
+                  <th scope="col">Scrape WIP</th>
+                  <th scope="col">Sent for Audit</th>
+                  <th scope="col">Reconfig RDA</th>
+                  <th scope="col">Reconfig Audit</th>
+                  <th scope="col">Approved Scrapes</th>
+                  <th scope="col">Total Scrapes</th>
+                  <th scope="col">Approved Domain</th>
+                  <th scope="col">Distinct Domain</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                {% for uob in rda %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    {% for ob in uob %}
+                        <center><td>{{ob|safe}}</td></center>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr style="background-color: #3FABAF;">
+                    {% for tt in total %}
+                        <td><b>{{tt|safe}}</b></td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

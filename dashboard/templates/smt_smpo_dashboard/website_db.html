@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.appelsiini.net/projects/chained/jquery.chained.js?v=0.9.10"></script>
+</head>
+<body>
+<div class="jumbotron">
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Filters</h2></center>
+    {% include 'smt_smpo_dashboard/websitedbfilter.html' %}
+    <center><h2 style="font-weight: bolder; color: #FD5825;">Website Database</h2></center>
+    <div style="float:right">
+        <form id="login-form" class="form" action="" method="POST">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #FD5825; color:white">EXPORT TO EXCEL</button>
+        </form>
+    </div>
+                <table class="table">
+                    <thead class="thead-dark" style="background-color: #3FABAF;">
+                        <tr>
+                            
+                                                        <th scope="col">bid</th>
+                            <th scope="col">brand</th>
+                            <th scope="col">website</th>
+                            <th scope="col">mp_id</th>
+                            <th scope="col">ssl_completed_date</th>
+                            <th scope="col">matching_completed_date</th>
+                            <th scope="col">incremental_matching_completed_date</th>
+                            <th scope="col">bs_owner</th>
+                            <th scope="col">bs_status</th>
+                            <th scope="col">bs_allocation_date</th>
+                            <th scope="col">bs_completion_date</th>
+                            <th scope="col">bsv_owner</th>
+                            <th scope="col">bsv_status</th>
+                            <th scope="col">bsv_allocation_date</th>
+                            <th scope="col">bsv_completion_date</th>
+                            <th scope="col">ptc_owner</th>
+                            <th scope="col">ptc_status</th>
+                            <th scope="col">ptc_allocation_date</th>
+                            <th scope="col">ptc_completion_date</th>
+                            <th scope="col">ptv_owner</th>
+                            <th scope="col">ptv_status</th>
+                            <th scope="col">ptv_allocation_date</th>
+                            <th scope="col">ptv_completion_date</th>
+                            <th scope="col">backfill_owner</th>
+                            <th scope="col">backfill_status</th>
+                            <th scope="col">backfill_allocation_date</th>
+                            <th scope="col">backfill_completion_date</th>
+                            <th scope="col">bem_owner</th>
+                            <th scope="col">bem_status</th>
+                            <th scope="col">bem_allocation_date</th>
+                            <th scope="col">bem_completion_date</th>
+                            <th scope="col">published_owner</th>
+                            <th scope="col">published_status</th>
+                            <th scope="col">published_allocation_date</th>
+                            <th scope="col">published_completion_date</th>
+                            <th scope="col">backfill_type</th>
+                            <th scope="col">language</th>
+                            <th scope="col">business_request</th>
+                            <th scope="col">brand_iteration</th>
+                            <th scope="col">bs_priority</th>
+                            <th scope="col">pt_request_count</th>
+                            <th scope="col">bs_ptname</th>
+                            <th scope="col">bs_attributes_count</th>
+                            <th scope="col">bs_comments</th>
+                            <th scope="col">bs_filename</th>
+                            <th scope="col">bs_path</th>
+                            <th scope="col">pt_not_found</th>
+                            <th scope="col">bsv_pt_not_found</th>
+                            <th scope="col">bsv_attributes_count</th>
+                            <th scope="col">bsv_comments</th>
+                            <th scope="col">bsv_inaccurate_selection</th>
+                            <th scope="col">bsv_sample_selection</th>
+                            <th scope="col">ptc_selection_size</th>
+                            <th scope="col">parent_count</th>
+                            <th scope="col">bundle_count</th>
+                            <th scope="col">ptc_comments</th>
+                            <th scope="col">ptc_file_name</th>
+                            <th scope="col">ptc_path</th>
+                            <th scope="col">ptv_selection_size</th>
+                            <th scope="col">ptv_comments</th>
+                            <th scope="col">ptv_file_name</th>
+                            <th scope="col">ptv_inaccurate_selection</th>
+                            <th scope="col">ptv_sample_selection</th>
+                            <th scope="col">backfill_pt_count</th>
+                            <th scope="col">backfill_source_attributes_count</th>
+                            <th scope="col">backfill_pt_source_attributes_count</th>
+                            <th scope="col">backfill_comments</th>
+                            <th scope="col">bem_attempted</th>
+                            <th scope="col">bem_converted</th>
+                            <th scope="col">bem_inaccurate_selection</th>
+                            <th scope="col">bem_sample_selection</th>
+                            <th scope="col">require_ontology_attributes_prior_count</th>
+                            <th scope="col">converted_ontology_count</th>
+                            <th scope="col">require_ontology_attributes_post_count</th>
+                            <th scope="col">slots_backfilled_count</th>
+                            <th scope="col">bem_publish_comment</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for obj in object %}
+                        <tr>
+                        <td>{{obj.bid }}</td>
+<td>{{obj.brand }}</td>
+<td>{{obj.website }}</td>
+<td>{{obj.mp_id }}</td>
+<td>{{obj.ssl_completed_date }}</td>
+<td>{{obj.matching_completed_date }}</td>
+<td>{{obj.incremental_matching_completed_date }}</td>
+<td>{{obj.bs_owner }}</td>
+<td>{{obj.bs_status }}</td>
+<td>{{obj.bs_allocation_date }}</td>
+<td>{{obj.bs_completion_date }}</td>
+<td>{{obj.bsv_owner }}</td>
+<td>{{obj.bsv_status }}</td>
+<td>{{obj.bsv_allocation_date }}</td>
+<td>{{obj.bsv_completion_date }}</td>
+<td>{{obj.ptc_owner }}</td>
+<td>{{obj.ptc_status }}</td>
+<td>{{obj.ptc_allocation_date }}</td>
+<td>{{obj.ptc_completion_date }}</td>
+<td>{{obj.ptv_owner }}</td>
+<td>{{obj.ptv_status }}</td>
+<td>{{obj.ptv_allocation_date }}</td>
+<td>{{obj.ptv_completion_date }}</td>
+<td>{{obj.backfill_owner }}</td>
+<td>{{obj.backfill_status }}</td>
+<td>{{obj.backfill_allocation_date }}</td>
+<td>{{obj.backfill_completion_date }}</td>
+<td>{{obj.bem_owner }}</td>
+<td>{{obj.bem_status }}</td>
+<td>{{obj.bem_allocation_date }}</td>
+<td>{{obj.bem_completion_date }}</td>
+<td>{{obj.published_owner }}</td>
+<td>{{obj.published_status }}</td>
+<td>{{obj.published_allocation_date }}</td>
+<td>{{obj.published_completion_date }}</td>
+<td>{{obj.backfill_type }}</td>
+<td>{{obj.language }}</td>
+<td>{{obj.business_request }}</td>
+<td>{{obj.brand_iteration }}</td>
+<td>{{obj.bs_priority }}</td>
+<td>{{obj.pt_request_count }}</td>
+<td>{{obj.bs_ptname }}</td>
+<td>{{obj.bs_attributes_count }}</td>
+<td>{{obj.bs_comments }}</td>
+<td>{{obj.bs_filename }}</td>
+<td>{{obj.bs_path }}</td>
+<td>{{obj.pt_not_found }}</td>
+<td>{{obj.bsv_pt_not_found }}</td>
+<td>{{obj.bsv_attributes_count }}</td>
+<td>{{obj.bsv_comments }}</td>
+<td>{{obj.bsv_inaccurate_selection }}</td>
+<td>{{obj.bsv_sample_selection }}</td>
+<td>{{obj.ptc_selection_size }}</td>
+<td>{{obj.parent_count }}</td>
+<td>{{obj.bundle_count }}</td>
+<td>{{obj.ptc_comments }}</td>
+<td>{{obj.ptc_file_name }}</td>
+<td>{{obj.ptc_path }}</td>
+<td>{{obj.ptv_selection_size }}</td>
+<td>{{obj.ptv_comments }}</td>
+<td>{{obj.ptv_file_name }}</td>
+<td>{{obj.ptv_inaccurate_selection }}</td>
+<td>{{obj.ptv_sample_selection }}</td>
+<td>{{obj.backfill_pt_count }}</td>
+<td>{{obj.backfill_source_attributes_count }}</td>
+<td>{{obj.backfill_pt_source_attributes_count }}</td>
+<td>{{obj.backfill_comments }}</td>
+<td>{{obj.bem_attempted }}</td>
+<td>{{obj.bem_converted }}</td>
+<td>{{obj.bem_inaccurate_selection }}</td>
+<td>{{obj.bem_sample_selection }}</td>
+<td>{{obj.require_ontology_attributes_prior_count }}</td>
+<td>{{obj.converted_ontology_count }}</td>
+<td>{{obj.require_ontology_attributes_post_count }}</td>
+<td>{{obj.slots_backfilled_count }}</td>
+<td>{{obj.bem_publish_comment }}</td>
+</tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+</div>   
+</body>
+</html>
+
+

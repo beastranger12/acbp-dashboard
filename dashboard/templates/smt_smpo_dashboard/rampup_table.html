@@ -1,0 +1,57 @@
+{% extends 'smt_smpo_dashboard/stakeholder_navbar.html' %} 
+{% block content%}
+<div class="jumbotron">
+	<p style="font-size:17px; color: #FD5825; text-decoration: underline; font-weight: 800; text-align: center;">Ramp Up Table</p>
+    <table class="table" style="font-size:small;">
+            <thead class="thead-dark" style="background-color: #3FABAF;">
+                <tr>
+                  
+                  <th scope="col"> Component/Month	</th>
+                  <th scope="col"> Jan	</th>
+                  <th scope="col">Feb</th>
+                  <th scope="col"> Mar	</th>
+                  <th scope="col">Apr</th>
+                  <th scope="col"> May	</th>
+                  <th scope="col">Jun</th>
+                  <th scope="col"> Jul	</th>
+                  <th scope="col">Aug</th>
+                  <th scope="col"> Sep	</th>
+                  <th scope="col">Oct</th>
+                  <th scope="col"> Nov	</th>
+                  <th scope="col">Dec</th>
+                  
+                  
+                </tr>
+            </thead>
+            
+            <tbody>
+            	<tr>
+            	{% for ml in tot%}
+    	
+    	<td>{{ml}}</td>
+    	{% endfor %}
+    </tr>
+    <tr>
+            	{% for ml in tot2%}
+    	
+    	<td>{{ml}}</td>
+    	{% endfor %}
+    </tr>
+    <tr>
+            	{% for ml in tot3%}
+    	
+    	<td>{{ml}}</td>
+    	{% endfor %}
+    </tr>
+    <tr>
+            	{% for ml in tot4%}
+    	
+    	<td>{{ml}}</td>
+    	{% endfor %}
+    </tr>
+    	
+            </tbody>
+        </table>
+    
+</div>
+{% endblock %}
